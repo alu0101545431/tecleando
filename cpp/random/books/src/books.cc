@@ -4,16 +4,15 @@
 #include <string>
 
 void PrintHelpMessage() {
-  std::cout << "[HELP]: The objective of this program is to switch "
-            << "between lowercases and uppercases of a given string."
-            << std::endl
+  std::cout << "[HELP]: The objective of this program is to apply the given "
+            << "taxes to a certain amount of books" << std::endl
             << "The syntax to use this program this program "
             << "properly is the following:" << std::endl
             << "[SYNTAX]: "
-            << "./switch_case STRING" << std::endl
-            << "[ADVICE]: Please, note "
-            << "that if you are going to use a string with more than one word,"
-            << "you will need to put it between quotting marks.";
+            << "./books TAX" << std::endl
+            << "[ADVICE]: Please, note that you need to use an integer number"
+            << "to set tax you are going to use. For example, 7 will mean a"
+            << "7% tax" << std::endl;
 }
 
 void Usage(const int argc, const char* argv[]) {
@@ -34,7 +33,7 @@ void Usage(const int argc, const char* argv[]) {
   }
 }
 
-double Book::PriceWithTaxes (int& taxes_to_apply) {
+double Book::PriceWithTaxes(int& taxes_to_apply) {
   double final_price;
   // We divide by 100 and add 1 to get the final price
   final_price = ((taxes_to_apply / 100) + 1) * price_;
