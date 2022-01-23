@@ -33,3 +33,10 @@ void Usage(const int argc, const char* argv[]) {
     std::exit(EXIT_FAILURE);
   }
 }
+
+double Book::PriceWithTaxes (int& taxes_to_apply) {
+  double final_price;
+  // We divide by 100 and add 1 to get the final price
+  final_price = ((taxes_to_apply / 100) + 1) * price_;
+  return final_price;
+}
