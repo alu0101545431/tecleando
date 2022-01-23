@@ -12,7 +12,7 @@ void PrintHelpMessage() {
             << "./books TAX" << std::endl
             << "[ADVICE]: Please, note that you need to use an integer number"
             << "to set tax you are going to use. For example, 7 will mean a"
-            << "7% tax" << std::endl;
+            << " 7 percent tax" << std::endl;
 }
 
 void Usage(const int argc, const char* argv[]) {
@@ -35,7 +35,7 @@ void Usage(const int argc, const char* argv[]) {
 
 double Book::PriceWithTaxes(int& taxes_to_apply) {
   double final_price;
-  // We divide by 100 and add 1 to get the final price
-  final_price = ((taxes_to_apply / 100) + 1) * price_;
+  // We'll multiply the taxes per 1.0 to convert from int to double.
+  final_price = (((taxes_to_apply * 1.0) / 100) + 1.0) * price_;
   return final_price;
 }

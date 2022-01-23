@@ -1,0 +1,3 @@
+/home/adrian/Documents/github-personal/tecleando/cpp/random/books/build/CMakeFiles/rebuild_cache.dir
+/home/adrian/Documents/github-personal/tecleando/cpp/random/books/build/CMakeFiles/books_main.dir
+/home/adrian/Documents/github-personal/tecleando/cpp/random/books/build/CMakeFiles/edit_cache.dir

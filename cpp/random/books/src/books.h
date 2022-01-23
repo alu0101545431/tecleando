@@ -17,7 +17,7 @@ class Book {
     price_ = 0;
   }
   // Constructor with parameters
-  Book(std::string& input_name, int& input_year, double& input_price) {
+  Book(const std::string& input_name, const int& input_year,const double& input_price) {
     name_ = input_name;
     year_ = input_year;
     price_ = input_price;

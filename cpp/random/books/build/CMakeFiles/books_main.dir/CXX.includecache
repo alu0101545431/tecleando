@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/adrian/Documents/github-personal/tecleando/cpp/random/books/src/books.cc
+books.h
+/home/adrian/Documents/github-personal/tecleando/cpp/random/books/src/books.h
+iostream
+-
+string
+-
+
+/home/adrian/Documents/github-personal/tecleando/cpp/random/books/src/books.h
+iostream
+-
+string
+-
+
+/home/adrian/Documents/github-personal/tecleando/cpp/random/books/src/books_main.cc
+iostream
+-
+string
+-
+books.h
+/home/adrian/Documents/github-personal/tecleando/cpp/random/books/src/books.h
+
