@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.1)  # Mandatory
 
 # set the project name 
-project(books                # Mandatory
+project(alphabet                # Mandatory
     VERSION 1.0
-    DESCRIPTION "3D books class"
+    DESCRIPTION "3D alphabet class"
     LANGUAGES CXX)
 
 # specify the C++ standard
@@ -28,15 +28,15 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 # Adds an executable target called "runTests" to be built from the source files listed in the command invocation.
 # add_executable(runTests
 #     test/gtest_main.cc
-#     src/books.h
-#     src/books.cc
-#     test/test_books.cc)
+#     src/alphabet.h
+#     src/alphabet.cc
+#     test/test_alphabet.cc)
 
-# Adds an executable target called "books_main" to be built from the source files listed in the command invocation.
-add_executable(books_main
-    src/books.h
-    src/books.cc
-        src/books_main.cc)
+# Adds an executable target called "alphabet_main" to be built from the source files listed in the command invocation.
+add_executable(alphabet_main
+    src/alphabet.h
+    src/alphabet.cc
+        src/alphabet_main.cc)
 
 # target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 
@@ -45,4 +45,4 @@ add_executable(books_main
 
 # Add compile options to a target.
 # target_compile_options(runTests PRIVATE -Wall -Wextra -Wpedantic -Weffc++)
-target_compile_options(books_main PRIVATE -Wall -Wextra -Wpedantic -Weffc++)
+target_compile_options(alphabet_main PRIVATE -Wall -Wextra -Wpedantic -Weffc++)
