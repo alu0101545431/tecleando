@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: Adrián Lima García
+// FECHA: 22-02-2022
+// EMAIL: alu0101204147@ull.edu.es
 // VERSION: 1.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 1
@@ -25,19 +25,20 @@ class rational_t
 {
   // pautas de estilos [44] y [73]: primero "public" y después "private"
 public:
-  rational_t(const int = 0, const int = 1);
-  ~rational_t() {}
+  rational_t(const int = 0, const int = 1); // constructor que pone por defecto
+                                            // numerador 0 y denominador 1
+  ~rational_t() {} // destructor de la clase rational_t
   
   // pauta de estilo [71]: indentación a 2 espacios
   // getters
-  int get_num() const;
-  int get_den() const;
+  int get_num() const; // método para acceder al contenido del denominador
+  int get_den() const; // método para acceder al contenido del numerador
   
   // setters
-  void set_num(const int);
-  void set_den(const int);
+  void set_num(const int); // método que modifica numerador de una instancia
+  void set_den(const int); // método que modifica denominador de una instancia
 
-  double value(void) const;
+  double value(void) const; // método que nos devuelve el valor del racional
 
   // FASE II
   // bool is_equal(const rational_t&, const double precision = EPSILON) const;
@@ -50,7 +51,7 @@ public:
   // rational_t multiply(const rational_t&);
   // rational_t divide(const rational_t&);
   
-  void write(ostream& = cout) const;
+  void write(ostream& = cout) const; 
   void read(istream& = cin);
   
 private:
