@@ -12,6 +12,8 @@
 
 #include "rational_t.hpp"
 
+#include <cmath>
+
 rational_t::rational_t(const int n, const int d)
 {
   assert(d != 0);
@@ -62,24 +64,24 @@ rational_t::value() const
 
 
 // comparaciones
-//bool
-//rational_t::is_equal(const rational_t& r, const double precision) const
-//{ 
-//}
+bool rational_t::is_equal(const rational_t& r, const double precision) const
+{ 
+  return ((abs(value() - r.value()) < precision) ? true : false); 
+}
 
 
 
-//bool
-//rational_t::is_greater(const rational_t& r, const double precision) const
-//{
-//}
+bool rational_t::is_greater(const rational_t& r, const double precision) const
+{
+  return ((value() - r.value() > precision) ? true : false); 
+}
 
 
 
-//bool
-//rational_t::is_less(const rational_t& r, const double precision) const
-//{
-//}
+bool rational_t::is_less(const rational_t& r, const double precision) const
+{
+  return ((r.value() - value() > precision) ? true : false);
+}
 
 
 // operaciones

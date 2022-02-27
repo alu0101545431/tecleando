@@ -41,9 +41,9 @@ public:
   double value(void) const; // método que nos devuelve el valor del racional
 
   // FASE II
-  // bool is_equal(const rational_t&, const double precision = EPSILON) const;
-  // bool is_greater(const rational_t&, const double precision = EPSILON) const;
-  // bool is_less(const rational_t&, const double precision = EPSILON) const;
+  bool is_equal(const rational_t&, const double precision = EPSILON) const;
+  bool is_greater(const rational_t&, const double precision = EPSILON) const;
+  bool is_less(const rational_t&, const double precision = EPSILON) const;
   
   // FASE III
   // rational_t add(const rational_t&);
