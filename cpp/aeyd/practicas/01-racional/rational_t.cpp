@@ -115,6 +115,7 @@ rational_t rational_t::substract(const rational_t& r)
 rational_t rational_t::multiply(const rational_t& r)
 {
   return rational_t((get_num() * r.get_num()), (get_den() * r.get_den()));
+  // TRY
 }
 
 
