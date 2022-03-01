@@ -85,24 +85,37 @@ bool rational_t::is_less(const rational_t& r, const double precision) const
 
 
 // operaciones
-//rational_t
-//rational_t::add(const rational_t& r)
-//{
-//}
+rational_t rational_t::add(const rational_t& r)
+{
+  // with a given struct like a/b + c/b ...
+  if (get_den() == r.get_den()) {
+    return rational_t((get_num() + r.get_num()), get_den()); 
+  } else {
+    int new_num = ((get_num() * r.get_den()) + ((r.get_num() * get_den())));
+    int new_denom = get_den() * r.get_den();
+    return rational_t(new_num, new_denom); // return new instance
+  }
+}
 
 
 
-//rational_t
-//rational_t::substract(const rational_t& r)
-//{
-//}
+rational_t rational_t::substract(const rational_t& r)
+{
+  if (get_den() == r.get_den()) {
+    return rational_t((get_num() + r.get_num()), get_den()); 
+  } else {
+    int new_num = ((get_num() * r.get_den()) - ((r.get_num() * get_den())));
+    int new_denom = get_den() * r.get_den();
+    return rational_t(new_num, new_denom); // return new instance
+  }
+}
 
 
 
-//rational_t
-//rational_t::multiply(const rational_t& r)
-//{
-//}
+rational_t rational_t::multiply(const rational_t& r)
+{
+  return rational_t((get_num() * r.get_num()), (get_den() * r.get_den()));
+}
 
 
 

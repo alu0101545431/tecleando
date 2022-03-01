@@ -45,14 +45,14 @@ int main()
   cout << "x < y? " << (x.is_less(y) ? "true" : "false") << endl;
 
   // FASE III
-  // cout << "a + b: ";
-  // a.add(b).write();
+  cout << "a + b: ";
+  a.add(b).write();
   
-  // cout << "b - a: ";
-  // b.substract(a).write();
+  cout << "b - a: ";
+  b.substract(a).write();
 
-  // cout << "a * b: ";
-  // a.multiply(b).write();
+  cout << "a * b: ";
+  a.multiply(b).write();
   
   // cout << "a / b: ";
   // a.divide(b).write();
