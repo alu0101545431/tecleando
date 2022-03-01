@@ -49,7 +49,7 @@ public:
   rational_t add(const rational_t&);
   rational_t substract(const rational_t&);
   rational_t multiply(const rational_t&);
-  // rational_t divide(const rational_t&);
+  rational_t divide(const rational_t&);
   
   void write(ostream& = cout) const; 
   void read(istream& = cin);

@@ -120,10 +120,10 @@ rational_t rational_t::multiply(const rational_t& r)
 
 
 
-//rational_t
-//rational_t::divide(const rational_t& r)
-//{
-//}
+rational_t rational_t::divide(const rational_t& r)
+{
+  return rational_t((get_num() * r.get_den()), (get_den() * r.get_num()));
+}
 
 
 

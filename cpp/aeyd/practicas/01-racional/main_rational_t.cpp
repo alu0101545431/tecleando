@@ -54,8 +54,8 @@ int main()
   cout << "a * b: ";
   a.multiply(b).write();
   
-  // cout << "a / b: ";
-  // a.divide(b).write();
+  cout << "a / b: ";
+  a.divide(b).write();
   
   return 0;
 }
