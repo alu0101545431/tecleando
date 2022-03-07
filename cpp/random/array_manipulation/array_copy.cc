@@ -13,5 +13,6 @@ int main() {
   char x[10];
   strcopy(x, "algoritmo");
   std::cout << x << std::endl;
+  std::cout << strcopy(x, "algoritmo") << std::endl;
   return 0;
 }
