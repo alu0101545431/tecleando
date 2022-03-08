@@ -128,20 +128,24 @@ rational_t rational_t::divide(const rational_t& r)
 
 
 // E/S
-void
-rational_t::write(ostream& os) const
+void rational_t::write(ostream& os) const
 {
   os << get_num() << "/" << get_den() << "=" << value() << endl;
 }
 
 
 
-void 
-rational_t::read(istream& is)
+void rational_t::read(istream& is)
 {
   cout << "Numerador? ";
   is >> num_;
   cout << "Denominador? ";
   is >> den_;
   assert(den_ != 0);
+}
+
+// MODIFICACION
+
+rational_t rational_t::opposite(void) const {
+  return rational_t(num_ * (-1), den_);
 }

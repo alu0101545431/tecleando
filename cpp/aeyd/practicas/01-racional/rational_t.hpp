@@ -46,13 +46,16 @@ public:
   bool is_less(const rational_t&, const double precision = EPSILON) const;
   
   // FASE III
-  rational_t add(const rational_t&);
-  rational_t substract(const rational_t&);
-  rational_t multiply(const rational_t&);
-  rational_t divide(const rational_t&);
+  rational_t add(const rational_t&); // método para sumar dos racionales
+  rational_t substract(const rational_t&); // método para restar dos racionales
+  rational_t multiply(const rational_t&); // método para multiplicar dos racionales
+  rational_t divide(const rational_t&); // método para dividir dos racionales
   
-  void write(ostream& = cout) const; 
-  void read(istream& = cin);
+  void write(ostream& = cout) const; // método para escribir por pantalla
+  void read(istream& = cin); // método para leer por teclado
+
+  // MODIFICACION
+  rational_t opposite(void) const; // método que devolverá el racional opuesto
   
 private:
   // pauta de estilo [11]: nombre de los atributos seguido de "_"
