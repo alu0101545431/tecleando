@@ -142,7 +142,15 @@ rational_t::divide(const rational_t& r) const
 rational_t
 operator+(const rational_t& a, const rational_t& b)
 {
-  // rellenar código
+  // with a given pair of rationals like a/b and c/d
+  if (a.get_den() == b.get_den()) { // if denominators are equal, we just add
+    return rational_t((a.get_num() + b.get_num()), a.get_den()); 
+  } else { // we apply the following rule
+    // result = ((a * d) + (c * b)) / (b * d)
+    int new_num = ((a.get_num() * b.get_den()) + ((b.get_num() * a.get_den())));
+    int new_denom = a.get_den() * b.get_den();
+    return rational_t(new_num, new_denom); // return new instance
+  }
 }
 
 
@@ -150,7 +158,14 @@ operator+(const rational_t& a, const rational_t& b)
 rational_t
 operator-(const rational_t& a, const rational_t& b)
 {
-  // rellenar código
+  if (a.get_den() == b.get_den()) {
+    return rational_t((a.get_num() + b.get_num()), a.get_den()); 
+  } else { // we apply the following rule
+    // result = ((a * d) - (c * b)) / (b * d)
+    int new_num = ((a.get_num() * b.get_den()) - ((b.get_num() * a.get_den())));
+    int new_denom = a.get_den() * b.get_den();
+    return rational_t(new_num, new_denom); // return new instance
+  }
 }
 
 
@@ -158,7 +173,7 @@ operator-(const rational_t& a, const rational_t& b)
 rational_t
 operator*(const rational_t& a, const rational_t& b)
 {
-  // rellenar código
+  return rational_t((a.get_num() * b.get_num()), (a.get_den() * b.get_den()));
 }
 
 
@@ -166,7 +181,7 @@ operator*(const rational_t& a, const rational_t& b)
 rational_t
 operator/(const rational_t& a, const rational_t& b)
 {
-  // rellenar código
+  return rational_t((a.get_num() * b.get_den()), (a.get_den() * b.get_num()));
 }
 
 
