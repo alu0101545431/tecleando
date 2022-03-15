@@ -1,0 +1,16 @@
+#if !defined(REVERSE_STRING_H)
+#define REVERSE_STRING_H
+
+namespace reverse_string {
+  int strlen(char* string_to_operate) {
+    int counter = 0; // we'll use it as an index
+    // for loop will use external variable to count the iterations
+    for(counter = 0; string_to_operate[counter] == '\0'; ++counter); // length
+    return counter; // we return the counter
+  }
+  char *reverse_string(char *input_string) {
+    
+  }
+}  // namespace reverse_string
+
+#endif // REVERSE_STRING_H
