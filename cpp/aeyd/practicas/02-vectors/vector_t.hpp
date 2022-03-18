@@ -200,10 +200,10 @@ template<class T>
 T
 scal_prod(const vector_t<T>& v, const vector_t<T>& w)
 {
-  assert(w.get_Size() == v.get.size()); // nos aseguramos que tienen el mismo tamaño
+  assert(w.get_size() == v.get_size()); // nos aseguramos que tienen el mismo tamaño
   T result;
   for (int i = 0; i < v.get_size(); ++i) {
-    result = result + (v.get_val() * w.get_val()); // hacemos la suma de producto
+    result = result + (v.get_val(i) * w.get_val(i)); // hacemos la suma de producto
   }
   return result;
 }
