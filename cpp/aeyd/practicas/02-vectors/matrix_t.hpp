@@ -183,5 +183,17 @@ template<class T>
 void
 matrix_t<T>::multiply(const matrix_t<T>& A, const matrix_t<T>& B)
 {
-  // rellenar código
+  assert(A.get_n() == B.get_m()); // n columnas m filas
+  resize(A.get_m(), B.get_n());
+  for (int i = 1; i <= A.get_m(); ++i) {
+    for(int j = 1; j <= B.get_n(); ++j) {
+      at(i, j) = 0;
+      for (int k = 1; k <= A.get_n(); ++k) { // k para recorrer filas
+        at(i, j) = at(i, j) + A.at(i,k) * B.at(k,j);
+      }
+    }
+  }
+  
+
+
 }
