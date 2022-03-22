@@ -65,5 +65,18 @@ int main()
   cout << "Multiplicación de matrices A y B: " << endl;
   C.write();
   
+
+// MODIFICACION
+  vector_t<int> vector_modificacion;
+  cout << "MODIFICACION: Introduce el vector" << endl;
+  vector_modificacion.read();
+  cout << "Vector: " << endl;
+  vector_modificacion.write();
+  if (vector_modificacion.IsPalindromic()) {
+    cout << "YES" << endl;
+  } else {
+    cout << "NO" << endl;
+  }
   return 0;
 }
+

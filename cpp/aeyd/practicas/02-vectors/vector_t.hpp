@@ -42,6 +42,9 @@ public:
   void write(ostream& = cout) const;
   void read(istream& = cin);
 
+  // MODIFICACION
+  bool IsPalindromic();
+
 private:
   T *v_;
   int sz_;
@@ -219,4 +222,16 @@ scal_prod(const vector_t<rational_t>& v, const vector_t<rational_t>& w)
     result = result + (v.get_val(i).value() * w.get_val(i).value()); // hacemos la suma de producto
   }
   return result;
+}
+
+// MODIFICACION
+template<class T>
+bool vector_t<T>::IsPalindromic() {
+  int vector_size = get_size(); // seteamos a una variable temp
+  for (int i = 0; i < vector_size; ++i) {
+    if (!(get_val(i) == get_val(vector_size - i - 1))) {  // comparo 1a y ult
+      return false; // si no es par, hacemos break de la funcion
+    }
+  }
+  return true;
 }
