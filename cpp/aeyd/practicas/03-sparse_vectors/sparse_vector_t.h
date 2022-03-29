@@ -78,9 +78,9 @@ sparse_vector_t::sparse_vector_t(const vector_t<double>& v, const double eps)
     if (IsNotZero(v.get_val(i))) {
       ++number_of_elements; // se añadira un nuevo elemento
       pair_vector_t aux = pair_vector_t(number_of_elements); // guardo en aux
-      pv_.resize(number_of_elements + 1); // nuevo vector con 1 espacio extra
+      pv_.resize(number_of_elements - 1); // nuevo vector con 1 espacio extra
       pv_ = aux; // igualo y me sobra un elemento, seteo en next line
-      pv_.set_val(number_of_elements + 1, pair_double_t(i, v.get_val(i))); 
+      pv_.set_val(number_of_elements - 1, pair_double_t(i, v.get_val(i))); 
     }
   }
   nz_ = counter_of_zeros;
