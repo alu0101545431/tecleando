@@ -69,7 +69,17 @@ sparse_vector_t::sparse_vector_t(const int n) : pv_(n), nz_(0), n_(n) {}
 // FASE II
 sparse_vector_t::sparse_vector_t(const vector_t<double>& v, const double eps)
     : pv_(), nz_(0), n_(0) {
-  // poner el código aquí
+  int vector_size = v.get_size();
+  int counter_of_zeros = 0;
+  n_ = vector_size;
+  
+  for (int i = 0; i < vector_size; ++i) {
+    IsNotZero(v.get_val(i)) ? ++counter_of_zeros : NULL;
+  }
+  nz_ = counter_of_zeros;
+
+  
+  
 }
 
 // constructor de copia
