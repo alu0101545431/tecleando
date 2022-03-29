@@ -7,15 +7,16 @@ int main(int argc, char const *argv[]) {
       {4, 5, 6},
       {7, 8, 9},
   };
-
+  bool symetric = true;
   for (int i = 0; i < m; i++) {
     for (int j = i; j < m; j++) {
       if (!(matrix[i][j] == matrix[j][i])) {
-        std::cout << "FALSE" << std::endl;
-        break;
+        symetric = false;
       }
     }
   }
-  std::cout << "TRUE" << std::endl;
+  if (symetric) {
+    std::cout << "SYMETRIC";
+  }
   return 0;
 }
