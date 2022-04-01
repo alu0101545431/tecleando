@@ -73,17 +73,24 @@ sparse_vector_t::sparse_vector_t(const vector_t<double>& v, const double eps)
   int counter_of_zeros = 0; // contador de ceros para inicializar luego nz_
   n_ = vector_size; // seteo al tamaño del vector escaso
   int number_of_elements = pv_.get_size(); // n elem en vector escaso por ahora
-  
   for (int i = 0; i < vector_size; ++i) {
     if (IsNotZero(v.get_val(i))) {
-      ++number_of_elements; // se añadira un nuevo elemento
-      pair_vector_t aux = pair_vector_t(number_of_elements); // guardo en aux
-      pv_.resize(number_of_elements - 1); // nuevo vector con 1 espacio extra
-      pv_ = aux; // igualo y me sobra un elemento, seteo en next line
-      pv_.set_val(number_of_elements - 1, pair_double_t(i, v.get_val(i))); 
+      ++counter_of_zeros;
     }
   }
-  nz_ = counter_of_zeros;
+  nz_ = counter_of_zeros; // set del numero de ceros
+  pv_.resize(nz_); // ajusto tamaño vec escaso al necesario
+  int zero_vector_index = 0;
+  for (int i = 0; i < vector_size; ++i) {
+    if (IsNotZero(v.get_val(i))) {
+    // i -> indice del vector normal al recorrer
+    // j -> indice del vector de ceros
+    // !    [0, 0, 3] -> [pos2 -> val3]
+    // !    pv_[0].set(3, 2)
+      pv_.set_val(zero_vector_index, pair_double_t(v.get_val(i), i));
+      ++zero_vector_index;
+    }
+  }
 }
 
 // constructor de copia
