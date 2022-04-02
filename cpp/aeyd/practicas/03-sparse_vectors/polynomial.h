@@ -82,7 +82,9 @@ std::ostream& operator<<(std::ostream& os, const Polynomial& p) {
 // Evaluación de un polinomio representado por vector denso
 double Polynomial::Eval(const double x) const {
   double result{0.0};
-  // poner el código aquí
+  for (int i = 0; i < get_size(); ++i) {
+    result += this->get_val(i) * pow(x, i);
+  }
   return result;
 }
 
@@ -92,6 +94,10 @@ bool Polynomial::IsEqual(const Polynomial& pol, const double eps) const {
   // poner el código aquí
   return !differents;
 }
+
+
+
+
 
 // constructor de copia
 SparsePolynomial::SparsePolynomial(const SparsePolynomial& spol) {
@@ -123,7 +129,9 @@ std::ostream& operator<<(std::ostream& os, const SparsePolynomial& p) {
 // Evaluación de un polinomio representado por vector disperso
 double SparsePolynomial::Eval(const double x) const {
   double result{0.0};
-  // poner el código aquí
+  for (int i = 0; i < get_nz(); ++i) {
+    result += at(i).get_val() * pow( x, at(i).get_inx());
+  }
   return result;
 }
 
