@@ -91,10 +91,11 @@ double Polynomial::Eval(const double x) const {
 // Comparación si son iguales dos polinomios representados por vectores densos
 bool Polynomial::IsEqual(const Polynomial& pol, const double eps) const {
   bool differents = false;
-  int vector_size = get_size() < pol.get_size() ? get_size() : pol.get_size();
-  // for (int i = 0; i < 2; ++i) {
-  //   if (at(i) == pol.at(i))
-  // }
+  for (int i = 0; i < get_size() && i < pol.get_size() && differents == false; i++) {  //Recorrer dos vectores, desde uno falle bandera arriba, abortamos bucle
+    if (fabs(get_val(i) - pol.get_val(i)) > eps) { 
+      differents = true; // comprobacion del igual por medio de epsilon
+    }  
+  }
   return !differents;
 }
 
@@ -142,7 +143,15 @@ double SparsePolynomial::Eval(const double x) const {
 bool SparsePolynomial::IsEqual(const SparsePolynomial& spol
 			       , const double eps) const {
   bool differents = false;
-  // poner el código aquí
+  // Recorremos el vector incrementando el indice hasta la última posición
+  // siempre y cuando esta sea menor que AMBOS, sino se aborta el bucle.
+  // Además deben ser diferentes, si se detecta que son diferentes, aborta.
+  for (int i = 0; i < get_nz() && i < spol.get_nz() && differents == false; ++i) { 
+    // Comprobamos igualdad usando los distintos getters de los objetos por eps
+    if (fabs(at(i).get_val() - spol.at(i).get_val()) > eps){
+      differents = true;
+    }  
+  }
   return !differents;
 }
 
@@ -150,7 +159,11 @@ bool SparsePolynomial::IsEqual(const SparsePolynomial& spol
 // vector disperso y vector denso
 bool SparsePolynomial::IsEqual(const Polynomial& pol, const double eps) const {
   bool differents = false;
-  // poner el código aquí
+  for (int i = 0; i < get_nz() && i < pol.get_size() && differents == false; ++i) { 
+    if (fabs(at(i).get_val() < pol.get_val(at(i).get_inx()) > eps)){
+      differents = true;
+    }
+  }
   return !differents;
 }
 
