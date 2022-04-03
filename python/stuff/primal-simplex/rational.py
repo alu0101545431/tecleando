@@ -5,6 +5,10 @@ class Rational():
       self._num = num
       self._den = den
 
+  def __init__(self, num):
+      self._num = num
+      self._den = 1
+
   # Getters and setters --> Pending to raise exception in den setter != 0
 
   @property
