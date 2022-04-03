@@ -8,8 +8,28 @@ PARTS OF A LINEAR PROGRAMMING PROBLEM:
 """
 
 class PSolver:
-  def __init__(self, obj_f, res):
-      self._obj_f = obj_f
-      self._res = res
+  def __init__(self):
+    self._n_variables = None
+    self._n_restrictions = None
+    self._obj_f = None
+    self._restrictions = []
+
+  # Getters
+
+  @parameter
+  def n_variables(self):
+    return self._n_variables
+
+  @parameter
+  def n_restrictions(self):
+    return self._n_restrictions
+  
+  def obj_f(self):
+    return self._obj_f
+
+  def restrictions(self):
+    return self.restrictions
+
+  # Setters
   
   
