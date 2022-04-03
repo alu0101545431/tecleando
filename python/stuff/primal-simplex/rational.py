@@ -1,8 +1,3 @@
-from ast import Return
-from multiprocessing.sharedctypes import Value
-import re
-
-
 class Rational():
 
   # Constructor --> Raise exception if den == 0
