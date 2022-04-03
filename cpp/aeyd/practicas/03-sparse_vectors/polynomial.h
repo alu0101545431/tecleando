@@ -160,8 +160,11 @@ bool SparsePolynomial::IsEqual(const SparsePolynomial& spol
 bool SparsePolynomial::IsEqual(const Polynomial& pol, const double eps) const {
   bool differents = false;
   for (int i = 0; i < get_nz() && i < pol.get_size() && differents == false; ++i) { 
+  // Recorremos el vector incrementando el indice hasta la última posición
+  // siempre y cuando esta sea menor que AMBOS, sino se aborta el bucle.
+  // Además deben ser diferentes, si se detecta que son diferentes, aborta.
     if (fabs(at(i).get_val() < pol.get_val(at(i).get_inx()) > eps)){
-      differents = true;
+      differents = true; // Compara posicion i con indice de la posicion i
     }
   }
   return !differents;
