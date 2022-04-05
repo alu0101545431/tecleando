@@ -55,6 +55,9 @@ class SparsePolynomial : public sparse_vector_t {
   double Eval(const double) const;
   bool IsEqual(const SparsePolynomial&, const double = EPS) const;
   bool IsEqual(const Polynomial&, const double = EPS) const;
+
+  // MODIFICACION: Mostrar monomios con coeficiente 0
+  void EmptyMonomials();
 };
 
 // E/S
@@ -168,6 +171,21 @@ bool SparsePolynomial::IsEqual(const Polynomial& pol, const double eps) const {
     }
   }
   return !differents;
+}
+
+// MODIFICACION
+
+void SparsePolynomial::EmptyMonomials() {
+  int grade = 0;
+  for (int i = 0; i < get_nz(); ++i) {  // se recorre vector escaso
+    while (at(i).get_inx() != grade) {  // si el grado del par en el sp_vector
+                                        // y el grado del pol normal NO coincide 
+                                        // se incrementa el grado a comparar
+      std::cout << "x" << grade << " "; // lo imprimimos
+      ++grade;
+    }
+  ++grade;
+  }
 }
 
 

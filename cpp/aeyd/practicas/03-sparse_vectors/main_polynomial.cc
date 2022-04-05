@@ -91,5 +91,16 @@ int main()
   cout << "sp3 == p2? " << (sp3.IsEqual(p2) ? "true" : "false") << endl;
   cout << endl;
 
+  cout << "sp1" << std::endl;
+  sp1.EmptyMonomials();
+  cout << std::endl;
+  cout << "sp2" << std::endl;
+  sp2.EmptyMonomials();
+    cout << std::endl;
+  cout << "sp3" << std::endl;
+  sp3.EmptyMonomials();
+  cout << std::endl;
+
+
   return 0;
 }
