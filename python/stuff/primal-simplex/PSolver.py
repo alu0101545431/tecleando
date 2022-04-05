@@ -7,6 +7,9 @@ PARTS OF A LINEAR PROGRAMMING PROBLEM:
 
 """
 
+from inspect import property
+
+
 class PSolver:
   def __init__(self):
     self._n_variables = None
@@ -16,11 +19,11 @@ class PSolver:
 
   # Getters
 
-  @parameter
+  @property
   def n_variables(self):
     return self._n_variables
 
-  @parameter
+  @property
   def n_restrictions(self):
     return self._n_restrictions
   
@@ -28,7 +31,31 @@ class PSolver:
     return self._obj_f
 
   def restrictions(self):
-    return self.restrictions
+    return self._restrictions
+
+  # Methods
+
+  @property.setter
+  def n_variables(self, other):
+    self._n_variables = other
+
+  @property.setter
+  def n_restrictions(self, other):
+    self._n_restrictions = other
+  
+  @property.setter
+  def obj_f(self, other):
+    self._obj_f = other
+
+  @property.setter
+  def restrictions(self, other):
+    self._restrictions = other
+
+
+  # Add Restrictions
+  def AddRestriction(self, restriction):
+    self._restrictions.append(restriction)
+  
 
   # Setters
   
