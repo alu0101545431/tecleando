@@ -30,6 +30,18 @@ class Polynomial():
   def __sub__(self, other):
     return self + other.Negative()
 
+  def __mul__(self, other):
+    result = Polynomial()
+    for i in range(BiggestRange(self, other)):
+      result.AddValue(self.GetValue(i) * other)
+    return result
+
+  def __truediv__(self, other):
+    result = Polynomial()
+    for i in range(BiggestRange(self, other)):
+      result.AddValue(self.GetValue(i) / other)
+    return result
+
 
   # Methods
 
