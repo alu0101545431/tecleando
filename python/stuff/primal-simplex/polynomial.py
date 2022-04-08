@@ -3,22 +3,24 @@ from matplotlib.pyplot import get
 
 class Polynomial():
 
+  # Constructor
   def __init__(self):
     self._polynomial = []
 
   def __init__(self, vector):
     self._polynomial = vector
   
+  # Getters and Setters
   @property
   def GetPolynomial(self):
     return self._polynomial
 
-  
-
   @property.setter
+  def SetPolynomial(self, new_polynomial)
+    self._polynomial = new_polynomial
   
-
-  # Operator overloading for polinomials
+  # Operator overloading for polynomials
+  
   def __add__(self, other):
     result = Polynomial()
     for i in range(BiggestRange(self, other)):
@@ -26,12 +28,12 @@ class Polynomial():
     return result
 
   def __sub__(self, other):
-    pass
+    return self + other.Negative()
+
 
   # Methods
 
   # Returns the monomial for a given grade
-
   def GetValue(self, grade):
     return self._polynomial[grade]
 
@@ -39,18 +41,22 @@ class Polynomial():
   def SetValue(self, grade, new_coefficient):
     self._polynomial[grade] = new_coefficient
   
+  # Add a value to the last grade of polinomial
   def AddValue(self, value):
     self._polynomial.append(value)
 
+  # Returns the size of the vector that represents a polinomial
   def GetSize(self):
     return self._polynomial.length()
 
+  # Returns the inversed vector of the polinomial
   def Negative(self):
     result = Polynomial()
     for i in self.GetSize():
       result.AddValue((-1) * self.GetValue(i))
     return result
 
+# Given 2 polinomials, returns the size of the biggest one.
 def BiggestRange(first, second):
   if first.GetSize() < second.GetSize():
     return second.GetSize()

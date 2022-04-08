@@ -54,7 +54,7 @@ class PSolver:
 
   # Add Restrictions
   def AddRestriction(self, restriction):
-    self._restrictions.append(restriction)
+    self._restrictions.append(restriction) 
   
 
   # Setters
