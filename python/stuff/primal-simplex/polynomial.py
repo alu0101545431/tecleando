@@ -12,11 +12,11 @@ class Polynomial():
   
   # Getters and Setters
   @property
-  def GetPolynomial(self):
+  def polynomial(self):
     return self._polynomial
 
   @property.setter
-  def SetPolynomial(self, new_polynomial)
+  def polynomial(self, new_polynomial)
     self._polynomial = new_polynomial
   
   # Operator overloading for polynomials

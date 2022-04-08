@@ -8,14 +8,15 @@ PARTS OF A LINEAR PROGRAMMING PROBLEM:
 """
 
 from inspect import property
+from polynomial import *
 
 
 class PSolver:
   def __init__(self):
-    self._n_variables = None
-    self._n_restrictions = None
-    self._obj_f = None
-    self._restrictions = []
+    self._n_variables = None # int
+    self._n_restrictions = None # int
+    self._obj_f = None # polynomial
+    self._restrictions = [] # vector of polynomial
 
   # Getters
 
@@ -54,8 +55,16 @@ class PSolver:
 
   # Add Restrictions
   def AddRestriction(self, restriction):
-    self._restrictions.append(restriction) 
-  
+    self._restrictions.append(restriction)
+
+  # Print the table  --  PENDING TO FORMAT
+  def Print(self): 
+    print("BV\t|\t", end = '')
+    for i in range(self.n_variables):
+      print("{i}\t", end = '')
+    print("|\t CONST")
+    
+    
 
   # Setters
   
