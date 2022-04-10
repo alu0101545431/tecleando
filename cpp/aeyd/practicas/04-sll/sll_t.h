@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: ADRIÁN LIMA GARCÍA
+// FECHA: ADRIÁN LIMA GARCÍA
+// EMAIL: ADRIANLIMAGARCIA00@ULL.EDU.ES
 // VERSION: 3.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 4
