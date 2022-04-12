@@ -16,7 +16,7 @@ class Polynomial():
     return self._polynomial
 
   @property.setter
-  def polynomial(self, new_polynomial)
+  def polynomial(self, new_polynomial):
     self._polynomial = new_polynomial
   
   # Operator overloading for polynomials
