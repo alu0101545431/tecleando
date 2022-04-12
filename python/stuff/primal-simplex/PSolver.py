@@ -7,7 +7,7 @@ PARTS OF A LINEAR PROGRAMMING PROBLEM:
 
 """
 
-from inspect import property
+import numbers
 from polynomial import *
 
 
@@ -28,27 +28,29 @@ class PSolver:
   def n_restrictions(self):
     return self._n_restrictions
   
+  @property
   def objective_function(self):
     return self._objective_function
 
+  @property
   def restrictions(self):
     return self._restrictions
 
   # Methods
 
-  @property.setter
+  @number_of_variables.setter
   def number_of_variables(self, other):
     self._number_of_variables = other
 
-  @property.setter
+  @n_restrictions.setter
   def n_restrictions(self, other):
     self._n_restrictions = other
   
-  @property.setter
+  @objective_function.setter
   def objective_function(self, other):
     self._objective_function = other
 
-  @property.setter
+  @restrictions.setter
   def restrictions(self, other):
     self._restrictions = other
 
@@ -61,16 +63,14 @@ class PSolver:
   def Print(self): 
     print("BV\t|\t", end = '')
     # - 1 cause we dont want to use the constants yet
-    for i in range(self.number_of_variables - 1):
-      print("x{i}\t", end = '')
-    print("|\t CONST\n")
-    for restriction in range(self.restrictions):
-      print("xx |", end = '')
-      for coeficient in restriction:
-        if coeficient == self.n_restrictions - 2:
-          print("\t|\t")
-        print("{coeficient}\t")
-      print("|\t ")
+    for i in range(self.number_of_variables):
+      print("x{i}\t".format(i = i), end = '')
+    print("|\tCONST")
+    for restriction in self.restrictions:
+      print("xx\t|\t", end = '')
+      for coeficient in restriction.polynomial[:self.number_of_variables]:
+        print("{coeficient}\t".format(coeficient = coeficient), end = '')
+      print("|\t{coeficient}".format(coeficient = restriction.polynomial[self.number_of_variables]))
     
     
 

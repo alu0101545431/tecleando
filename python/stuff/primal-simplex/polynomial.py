@@ -15,7 +15,7 @@ class Polynomial():
   def polynomial(self):
     return self._polynomial
 
-  @property.setter
+  @polynomial.setter
   def polynomial(self, new_polynomial):
     self._polynomial = new_polynomial
   
