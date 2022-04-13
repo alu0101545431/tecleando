@@ -62,12 +62,12 @@ class PSolver:
   # Print the table  --  PENDING TO FORMAT
   def Print(self): 
     print("BV\t|\t", end = '')
-    # - 1 cause we dont want to use the constants yet
+    # - print the index of every x
     for i in range(self.number_of_variables):
-      print("x{i}\t".format(i = i), end = '')
+      print("x{i}\t".format(i = i + 1), end = '')
     print("|\tCONST")
     for restriction in self.restrictions:
-      print("xx\t|\t", end = '')
+      print("xx\t|\t", end = '') # pending to add joining and leaving variables ...
       for coeficient in restriction.polynomial[:self.number_of_variables]:
         print("{coeficient}\t".format(coeficient = coeficient), end = '')
       print("|\t{coeficient}".format(coeficient = restriction.polynomial[self.number_of_variables]))
