@@ -92,8 +92,12 @@ std::ostream& operator<<(std::ostream& os, const SllPolynomial& p) {
 // Evaluación de un polinomio representado por lista simple
 double SllPolynomial::Eval(const double x) const {
   double result{0.0};
-  // poner el código aquí
-  
+  assert(!empty());
+  SllPolyNode* aux = get_head();
+  while (aux != NULL) {
+    result += aux->get_data().get_val() * pow(x, aux->get_data().get_inx());
+    aux = aux->get_next();
+  }
   return result;
 }
 
@@ -101,7 +105,16 @@ double SllPolynomial::Eval(const double x) const {
 bool SllPolynomial::IsEqual(const SllPolynomial& sllpol,
 			    const double eps) const {
   bool differents = false;
-  // poner el código aquí
+  assert(!empty());
+  SllPolyNode* aux = get_head();
+  SllPolyNode* sllpol_aux = sllpol.get_head();
+  while (aux != NULL && !differents) {
+    if (fabs(aux->get_data().get_val() - sllpol_aux->get_data().get_val()) > eps) {
+      differents =  true;
+    }
+    aux = aux->get_next();
+    sllpol_aux = sllpol_aux->get_next();
+  }
 
   return !differents;
 }
