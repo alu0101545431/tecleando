@@ -37,7 +37,10 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
     for (k = 0; k < m; k++) {
       textfile >> (unsigned &)i >> (unsigned &)j >> (int &)dummy.c;
       // damos los valores a dummy.j y dummy.c
+      dummy.j = j;
+      dummy.c = 
       // situamos en la posici�n del nodo i a dummy mediante push_back
+      LS[i].push_back(dummy)
       // pendiente de hacer un segundo push_back si es no dirigido. O no.
       // pendiente la construcci�n de LP, si es dirigido
       // pendiente del valor a devolver en errorapertura
