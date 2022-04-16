@@ -114,7 +114,7 @@ bool SllPolynomial::IsEqual(const SllPolynomial& sllpol,
     }
     aux = aux->get_next();
     sllpol_aux = sllpol_aux->get_next();
-  }
+  }//Recorrer la lista
 
   return !differents;
 }
@@ -125,62 +125,41 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,
 			SllPolynomial& sllpolsum, const double eps) {
   SllPolyNode* first_node = new SllPolyNode;
   SllPolyNode* second_node = new SllPolyNode;
-  SllPolyNode* aux = new SllPolyNode;
+  SllPolyNode* last_node_placed = new SllPolyNode;
   bool is_first_element = true;
+  int index = 0;
 
   first_node = get_head();
   second_node = sllpol.get_head();
+  pair_double_t aux_pair;
   
-  while(first_node != NULL && second_node != NULL ){ 
-    pair_double_t aux_pair(first_node->get_data().get_val() + 
-                          second_node->get_data().get_val(),
-                          first_node->get_data().get_inx());
-    SllPolyNode* third_node = new SllPolyNode;
-    third_node->set_data(aux_pair); 
-    if(is_first_element){ // En el primer elemento lo que hacemos es ponerlo al principio.
-      sllpolsum.push_front(third_node);
+  while(first_node != NULL && second_node != NULL ) { 
+  
+    if (first_node->get_data().get_inx() == second_node->get_data().get_inx()) {
+      aux_pair.set(first_node->get_data().get_val() + 
+                            second_node->get_data().get_val(),
+                            first_node->get_data().get_inx());
+    } else if (first_node->get_data().get_inx() > second_node->get_data().get_inx()) {
+      aux_pair.set(first_node->get_data().get_val(), first_node->get_data().get_val());
+    } else {
+      aux_pair.set(second_node->get_data().get_val(), second_node->get_data().get_inx());
+    }
+    
+    SllPolyNode* result_node = new SllPolyNode;
+    result_node->set_data(aux_pair); 
+    if(is_first_element) { // En el primer elemento lo que hacemos es ponerlo al principio.
+      sllpolsum.push_front(result_node);
       is_first_element = false; // Una vez hecho, seteamos a false.
     } else { // Los siguientes casos se pondrán TRAS el primero (último)
-      sllpolsum.insert_after(aux, third_node); 
+      sllpolsum.insert_after(last_node_placed, result_node); 
     }
-    aux = sllpolsum.get_head();
-    aux = third_node;
+    // last_node_placed= sllpolsum.get_head();
+    last_node_placed = result_node;
     first_node = first_node->get_next();
     second_node = second_node->get_next();
+    ++index;
   }
 }
-
-
-// void SllPolynomial::Sum(const SllPolynomial& sllpol,
-// 			SllPolynomial& sllpolsum,
-// 			const double eps) {
-//   SllPolyNode* aux = get_head();
-//   SllPolyNode* sllpol_aux = sllpol.get_head();
-//   pair_double_t aux_pair;
-//   int list_index = 0;
-//   int shortest_list_index = 0;
-//   bool instance_is_shorter = false;
-  
-//   while (aux != NULL && sllpol_aux != NULL) {
-    
-//     aux_pair.set(aux->get_data().get_val() + sllpol_aux->get_data().get_val(), aux->get_data().get_inx());
-//     sllpolsum.push_front(new SllPolyNode(aux_pair));
-//     aux = aux->get_next();
-//     sllpol_aux = sllpol_aux->get_next();
-//     if (!(aux)) {
-//       instance_is_shorter = true;
-//     }
-//     ++list_index;
-//   }
-  // SllPolyNode* shortest_list_node = (instance_is_shorter ? sllpol_aux : aux);
-  // while (shortest_list_node != NULL) {
-  //   if (shortest_list_index < list_index) {
-  //     sllpolsum.push_front(shortest_list_node);
-  //   }
-  //   ++shortest_list_index;
-  //   shortest_list_node = shortest_list_node->get_next();
-  // }
-// }
   
 
 #endif  // SLLPOLYNOMIAL_H_
