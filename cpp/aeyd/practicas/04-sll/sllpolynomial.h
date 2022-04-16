@@ -131,7 +131,7 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,
   first_node = get_head();
   second_node = sllpol.get_head();
   
-  while(first_node != NULL && second_node != NULL ){ //Recorrer la lista
+  while(first_node != NULL && second_node != NULL ){ 
     pair_double_t aux_pair(first_node->get_data().get_val() + 
                           second_node->get_data().get_val(),
                           first_node->get_data().get_inx());
