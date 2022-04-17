@@ -127,24 +127,28 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,
   SllPolyNode* second_node = new SllPolyNode;
   SllPolyNode* last_node_placed = new SllPolyNode;
   bool is_first_element = true;
-  int index = 0;
 
   first_node = get_head();
   second_node = sllpol.get_head();
   pair_double_t aux_pair;
   
   while(first_node != NULL && second_node != NULL ) { 
-  
+    // Cuando hay 0's no se incluyen en SSL, entonces inx no coincide
+    // Si coinciden, se suman ambos.
     if (first_node->get_data().get_inx() == second_node->get_data().get_inx()) {
       aux_pair.set(first_node->get_data().get_val() + 
                             second_node->get_data().get_val(),
                             first_node->get_data().get_inx());
-    } else if (first_node->get_data().get_inx() > second_node->get_data().get_inx()) {
+      first_node = first_node->get_next();
+      second_node = second_node->get_next();
+      // Si inx del 1o mayor que 2o, hay 0 en el 
+    } else if (first_node->get_data().get_inx() < second_node->get_data().get_inx()) {
       aux_pair.set(first_node->get_data().get_val(), first_node->get_data().get_val());
+      first_node = first_node->get_next(); // Solo avanza el 1o
     } else {
       aux_pair.set(second_node->get_data().get_val(), second_node->get_data().get_inx());
+      second_node = second_node->get_next();
     }
-    
     SllPolyNode* result_node = new SllPolyNode;
     result_node->set_data(aux_pair); 
     if(is_first_element) { // En el primer elemento lo que hacemos es ponerlo al principio.
@@ -155,9 +159,20 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,
     }
     // last_node_placed= sllpolsum.get_head();
     last_node_placed = result_node;
-    first_node = first_node->get_next();
-    second_node = second_node->get_next();
-    ++index;
+  }
+  while (first_node != NULL) {
+    aux_pair.set(first_node->get_data().get_val(), first_node->get_data().get_val());
+    first_node = first_node->get_next(); // Solo avanza el 1o
+    SllPolyNode* result_node = new SllPolyNode;
+    result_node->set_data(aux_pair);
+    sllpolsum.insert_after(last_node_placed, result_node); 
+  }
+  while (second_node != NULL) {
+    aux_pair.set(second_node->get_data().get_val(), second_node->get_data().get_inx());
+      second_node = second_node->get_next();
+      SllPolyNode* result_node = new SllPolyNode;
+      result_node->set_data(aux_pair);
+      sllpolsum.insert_after(last_node_placed, result_node); 
   }
 }
   
