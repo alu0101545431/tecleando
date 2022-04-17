@@ -141,10 +141,11 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,
                             first_node->get_data().get_inx());
       first_node = first_node->get_next();
       second_node = second_node->get_next();
-      // Si inx del 1o mayor que 2o, hay 0 en el 
+      // Si inx del 2o mayor que 1o, hay 0 en el 1o, avanza 1o para equilibrar
     } else if (first_node->get_data().get_inx() < second_node->get_data().get_inx()) {
       aux_pair.set(first_node->get_data().get_val(), first_node->get_data().get_val());
       first_node = first_node->get_next(); // Solo avanza el 1o
+      // Viceversa
     } else {
       aux_pair.set(second_node->get_data().get_val(), second_node->get_data().get_inx());
       second_node = second_node->get_next();
@@ -157,7 +158,6 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol,
     } else { // Los siguientes casos se pondrán TRAS el primero (último)
       sllpolsum.insert_after(last_node_placed, result_node); 
     }
-    // last_node_placed= sllpolsum.get_head();
     last_node_placed = result_node;
   }
   while (first_node != NULL) {
