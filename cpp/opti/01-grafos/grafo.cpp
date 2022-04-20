@@ -46,6 +46,10 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
         LS[j - 1].push_back(dummy);
       }
       // pendiente la construcci�n de LP, si es dirigido
+      // PREGUNTAR
+      // if (Es_dirigido) {
+      //   LP[j - 1] = i - 1;
+      // }
       // pendiente del valor a devolver en errorapertura
       //...
     }
