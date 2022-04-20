@@ -37,11 +37,14 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
     for (k = 0; k < m; k++) {
       textfile >> (unsigned &)i >> (unsigned &)j >> (int &)dummy.c;
       // damos los valores a dummy.j y dummy.c
-      dummy.j = j;
-      dummy.c = 
+      dummy.j = j - 1;
       // situamos en la posici�n del nodo i a dummy mediante push_back
-      LS[i].push_back(dummy)
+      LS[i].push_back(dummy);
       // pendiente de hacer un segundo push_back si es no dirigido. O no.
+      if (Es_dirigido) {
+        dummy.j = i - 1;
+        LS[j - 1].push_back(dummy);
+      }
       // pendiente la construcci�n de LP, si es dirigido
       // pendiente del valor a devolver en errorapertura
       //...
@@ -63,7 +66,10 @@ void GRAFO::actualizar(char nombrefichero[85], int &errorapertura) {
   build(nombrefichero, errorapertura);
 }
 
-unsigned GRAFO::Es_dirigido() {}
+unsigned GRAFO::Es_dirigido() {
+  if (dirigido == 1) {return true;};
+  return false;
+}
 
 void GRAFO::Info_Grafo() {}
 
