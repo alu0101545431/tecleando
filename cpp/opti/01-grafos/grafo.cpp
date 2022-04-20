@@ -33,6 +33,8 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
     // los nodos internamente se numeran desde 0 a n-1
     // creamos las n listas de sucesores
     LS.resize(n);
+    // predecesores si no es dirigido
+    if (Es_dirigido()) {LP.resize(n);}
     // leemos los m arcos
     for (k = 0; k < m; k++) {
       textfile >> (unsigned &)i >> (unsigned &)j >> (int &)dummy.c;
@@ -41,18 +43,20 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
       // situamos en la posici�n del nodo i a dummy mediante push_back
       LS[i].push_back(dummy);
       // pendiente de hacer un segundo push_back si es no dirigido. O no.
-      if (Es_dirigido) {
+      if (!Es_dirigido()) {
         dummy.j = i - 1;
         LS[j - 1].push_back(dummy);
       }
       // pendiente la construcci�n de LP, si es dirigido
-      // PREGUNTAR
-      // if (Es_dirigido) {
-      //   LP[j - 1] = i - 1;
-      // }
+      if (Es_dirigido()) {
+        dummy.j = i - 1;
+        LP[j - 1].push_back(dummy);
+      }
       // pendiente del valor a devolver en errorapertura
       //...
     }
+  } else {
+    errorapertura = true;
   }
 }
 
@@ -71,11 +75,16 @@ void GRAFO::actualizar(char nombrefichero[85], int &errorapertura) {
 }
 
 unsigned GRAFO::Es_dirigido() {
-  if (dirigido == 1) {return true;};
-  return false;
+  if (dirigido == 1) {return 1;};
+  return 0;
 }
 
-void GRAFO::Info_Grafo() {}
+void GRAFO::Info_Grafo() {
+  std::cout << "[INFO]: GRAFO DIRIGIDO: " << (Es_dirigido() ? "SÍ" : "NO") 
+            << std::endl;
+  std::cout << "[INFO]: ORDEN: " << n << std::endl;
+  std::cout << "[INFO]: NÚMERO DE ARCOS: " << m << std::endl;
+}
 
 void Mostrar_Lista(vector<LA_nodo> L) {}
 
