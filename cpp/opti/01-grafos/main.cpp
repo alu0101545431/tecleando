@@ -24,6 +24,11 @@ void menu(unsigned dirigido, char &opcion)
     cout << "i. Mostrar [i]nformacion basica del grafo" << endl;
     cout << "s. Mostrar la lista de [s]ucesores del grafo" << endl;
     cout << "p. Mostrar la lista de [p]redecesores del grafo" << endl;
+    cout << "y. Mostrar la lista de ad[y]acencia del grafo" << endl;
+    cout << "m. Realizar un recorrido en amplitud del grafo" << endl;
+    cout << "r. Realizar un recorrido en profundidad del grafo" << endl;
+    cout << "d. Caminos minimos: [d]ijkstra" << endl;
+    cout << "f. Caminos minimos: [f]loyd-warshall" << endl;
     // Aqu� se a�aden m�s opciones al men� del grafo dirigido
   };
   cout << "q. Finalizar el programa" << endl;
@@ -85,7 +90,18 @@ int main(int argc, char *argv[]) {
           // clrscr();
           break;
           // Situar aqu� el resto de opciones del men�
-          
+        case 'y':
+          cout << "[INFO]: Lista de adyacencia de " << nombrefichero << endl;
+          G.Mostrar_Listas(0);
+          break;
+        case 's':
+          cout << "[INFO]: Lista de sucesores de " << nombrefichero << endl;
+          G.Mostrar_Listas(1);
+          break;
+        case 'p':
+          cout << "[INFO]: Lista de predecesores de " << nombrefichero << endl;
+          G.Mostrar_Listas(-1);
+          break;
       }
     } while (opcion != 'q');
   }

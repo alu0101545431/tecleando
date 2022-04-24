@@ -43,7 +43,7 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
       // damos los valores a dummy.j y dummy.c
       dummy.j = j - 1;
       // situamos en la posici�n del nodo i a dummy mediante push_back
-      LS[i].push_back(dummy);
+      LS[i - 1].push_back(dummy);
       // pendiente de hacer un segundo push_back si es no dirigido. O no.
       if (!Es_dirigido()) {
         dummy.j = i - 1;
@@ -104,16 +104,19 @@ void GRAFO ::Mostrar_Listas(int l) {
     case 1:
       for (int nodo = 0; nodo < LS.size(); ++nodo) {
       std::cout << "[NODO " << nodo + 1 << "]: ";
-        for (int nodo_adyacente = 0; nodo_adyacente < LS[nodo].size(); ++nodo_adyacente) {
-        std::cout << LS[nodo][nodo_adyacente].j + 1 << std::endl;
+        for (int nodo_sucesor = 0; nodo_sucesor < LS[nodo].size(); ++nodo_sucesor) {
+        std::cout << LS[nodo][nodo_sucesor].j + 1 << " ";
         }
+      std::cout << std::endl;
       }
+      break;
     case -1:
       for (int nodo = 0; nodo < LP.size(); ++nodo) {
       std::cout << "[NODO " << nodo + 1 << "]: ";
-        for (int nodo_adyacente = 0; nodo_adyacente < LP[nodo].size(); ++nodo_adyacente) {
-        std::cout << LP[nodo][nodo_adyacente].j + 1 << std::endl;
+        for (int nodo_predecesor = 0; nodo_predecesor < LP[nodo].size(); ++nodo_predecesor) {
+        std::cout << LP[nodo][nodo_predecesor].j + 1 << " ";
         }
+      std::cout << std::endl;
       }
       break;
     default:
