@@ -34,7 +34,9 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
     // creamos las n listas de sucesores
     LS.resize(n);
     // predecesores si no es dirigido
-    if (Es_dirigido()) {LP.resize(n);}
+    if (Es_dirigido()) {
+      LP.resize(n);
+    }
     // leemos los m arcos
     for (k = 0; k < m; k++) {
       textfile >> (unsigned &)i >> (unsigned &)j >> (int &)dummy.c;
@@ -71,28 +73,59 @@ void GRAFO::actualizar(char nombrefichero[85], int &errorapertura) {
   // destructor
   destroy();
   // Leemos del fichero y actualizamos G con nuevas LS y, en su caso, LP
+  std::cout << "llamada constructor again" << std::endl;
   build(nombrefichero, errorapertura);
 }
 
 unsigned GRAFO::Es_dirigido() {
-  if (dirigido == 1) {return 1;};
+  if (dirigido == 1) {
+    return 1;
+  };
   return 0;
 }
 
 void GRAFO::Info_Grafo() {
-  std::cout << "[INFO]: GRAFO DIRIGIDO: " << (Es_dirigido() ? "SÍ" : "NO") 
+  std::cout << "[INFO]: GRAFO DIRIGIDO: " << (Es_dirigido() ? "SÍ" : "NO")
             << std::endl;
   std::cout << "[INFO]: ORDEN: " << n << std::endl;
   std::cout << "[INFO]: NÚMERO DE ARCOS: " << m << std::endl;
 }
 
-void Mostrar_Lista(vector<LA_nodo> L) {}
+void Mostrar_Lista(vector<LA_nodo> L) {
+  for (int nodo_adyacente = 0; nodo_adyacente < L.size(); ++nodo_adyacente) {
+    std::cout << nodo_adyacente + 1;
+  }
+}
 
-void GRAFO ::Mostrar_Listas(int l) {}
+void GRAFO ::Mostrar_Listas(int l) {
+  switch (l) {
+    case 0:
+      break;
+    case 1:
+      for (int nodo = 0; nodo < LS.size(); ++nodo) {
+      std::cout << "[NODO " << nodo + 1 << "]: ";
+        for (int nodo_adyacente = 0; nodo_adyacente < LS[nodo].size(); ++nodo_adyacente) {
+        std::cout << LS[nodo][nodo_adyacente].j + 1 << std::endl;
+        }
+      }
+    case -1:
+      for (int nodo = 0; nodo < LP.size(); ++nodo) {
+      std::cout << "[NODO " << nodo + 1 << "]: ";
+        for (int nodo_adyacente = 0; nodo_adyacente < LP[nodo].size(); ++nodo_adyacente) {
+        std::cout << LP[nodo][nodo_adyacente].j + 1 << std::endl;
+        }
+      }
+      break;
+    default:
+      break;
+  }
+}
 
 void GRAFO::Mostrar_Matriz()  // Muestra la matriz de adyacencia, tanto los
                               // nodos adyacentes como sus costes
-{}
+{
+  
+}
 
 void GRAFO::dfs_num(
     unsigned i, vector<LA_nodo> L, vector<bool> &visitado,
