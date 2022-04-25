@@ -40,6 +40,22 @@
     "streambuf": "cpp",
     "typeinfo": "cpp",
     "ctime": "cpp",
-    "iomanip": "cpp"
+    "iomanip": "cpp",
+    "bitset": "cpp",
+    "chrono": "cpp",
+    "condition_variable": "cpp",
+    "cstring": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "map": "cpp",
+    "numeric": "cpp",
+    "random": "cpp",
+    "ratio": "cpp",
+    "regex": "cpp",
+    "set": "cpp",
+    "future": "cpp",
+    "mutex": "cpp",
+    "thread": "cpp",
+    "variant": "cpp"
   }
 }
