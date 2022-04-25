@@ -102,6 +102,10 @@ int main(int argc, char *argv[]) {
           cout << "[INFO]: Lista de predecesores de " << nombrefichero << endl;
           G.Mostrar_Listas(-1);
           break;
+        case 'r':
+          cout << "Recorrido por profundidad: \n";
+          G.RecorridoProfundidad();
+        break;
       }
     } while (opcion != 'q');
   }

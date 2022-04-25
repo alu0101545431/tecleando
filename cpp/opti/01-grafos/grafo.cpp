@@ -147,7 +147,37 @@ void GRAFO::dfs_num(
       i;  // asignamos el orden de visita posnum que corresponde al nodo i
 }
 
-void GRAFO::RecorridoProfundidad() {}
+void GRAFO::RecorridoProfundidad() {
+  //creación e inicialización de variables y vectores
+  int v_size = LS.size() - 1;
+  vector<bool> visitado;
+  vector<unsigned> prenum;
+  unsigned prenum_ind = 0;
+  vector<unsigned> postnum;
+  unsigned postnum_ind = 0;
+  unsigned nodo_inicial;
+
+  visitado.resize(v_size);
+  prenum.resize(v_size);
+  postnum.resize(v_size);
+  //solicitud al usuario del nodo inicial del recorrido en profundidad
+  std::cout << "[INPUT]: Nodo de inicio del recorrido en profundidad > ";
+  std::cin >> nodo_inicial;
+  dfs_num(nodo_inicial - 1, LS, visitado, prenum, prenum_ind, postnum, postnum_ind);
+  //mostrar en pantalla el preorden
+  std::cout << "[INFO]: Preorden" << std::endl;
+  for (int i = 0; i < prenum.size(); ++i) {
+    std::cout << "[" << prenum[i] + 1 << "]" << " -> ";
+  }
+  std::cout << std::endl;
+  //mostrar en pantalla el postorden
+  std::cout << "[INFO]: PostOrden" << std::endl;
+  for (int i = 0; i < postnum.size(); ++i) {
+    std::cout << "[" << postnum[i] + 1 << "]" << " -> ";
+  }
+  std::cout << std::endl;
+
+}
 
 void GRAFO::bfs_num(
     unsigned i,         // nodo desde el que realizamos el recorrido en amplitud
