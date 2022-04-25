@@ -21,32 +21,44 @@ int main(void) {
   cout << "********** PILA VECTOR **********" << endl;
   for (int i = 0; i < 10; i++) {
     pila_vector.push('a' + i);
-    pila_vector.write();
+    // pila_vector.write();
     cout << endl;
   }
   cout << endl;
 
-  while (!pila_vector.empty()) {
-    pila_vector.pop();
-    pila_vector.write();
-    cout << endl;
-  }
+  // while (!pila_vector.empty()) {
+  //   pila_vector.pop();
+  //   pila_vector.write();
+  //   cout << endl;
+  // }
 
 
   stack_l_t<char> pila_lista;
   cout << "********** PILA LISTA **********" << endl;
   for (int i = 0; i < 10; i++) {
     pila_lista.push('a' + i);
-    pila_lista.write();
+     // pila_lista.write();
     cout << endl;
   }
   cout << endl;
 
-  while (!pila_lista.empty()) {
-    pila_lista.pop();
-    pila_lista.write();
-    cout << endl;
-  }
+  // while (!pila_lista.empty()) {
+  //   pila_lista.pop();
+  //   pila_lista.write();
+  //   cout << endl;
+  // }
+
+  pila_vector.write();
+  cout << "MODIFICACION" << std::endl;
+  pila_vector.EndReplace();
+
+  pila_vector.write();
+
+  stack_v_t<char> pila_aux;
+  pila_vector.reverse(pila_aux);
+
+  pila_aux.write();
+  
 	
   return 0;
 }

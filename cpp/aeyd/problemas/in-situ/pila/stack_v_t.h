@@ -34,6 +34,8 @@ template<class T> class stack_v_t {
   const T& top(void) const;
   bool empty(void) const;
   bool full(void) const;
+  void EndReplace(void);
+  void reverse(stack_v_t&);
 
   // E/S
   std::ostream& write(std::ostream& = std::cout) const;
@@ -74,6 +76,26 @@ template<class T> std::ostream& stack_v_t<T>::write(std::ostream& os) const {
     os << " │ " << std::setw(2) << v_[i] << "  │" << std::endl;
   os << " └─────┘" << std::endl;
   return os;
+}
+
+template<class T>
+void stack_v_t<T>::EndReplace() {
+  T aux; // variable auxiliar para guardar el último valor
+  T aux2; // variable para el penúltimo
+  aux = top(); // se asigna
+  pop(); // se elimina el ultimo elemento que ya guardamos en aux
+  aux2 = top(); // idem al aux
+  pop();
+  push(aux);
+  push(aux2);
+}
+
+template<class T>
+void stack_v_t<T>::reverse(stack_v_t& new_stack) {
+  while(!empty()) { // mientras no esté vacía
+    new_stack.push(top()); // ponemos al principio de la nueva el final de la otra
+    pop(); // eliminamos el final de la otra
+  }
 }
 
 
