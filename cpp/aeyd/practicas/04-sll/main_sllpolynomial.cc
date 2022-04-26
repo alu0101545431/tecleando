@@ -72,5 +72,11 @@ int main()
   sllp2.Sum(sllp3, sllpsum23);
   cout << "sllp2 + sllp3= " << sllpsum23;
 
+  // modificacion
+
+  cout << "[MODIFICACION]: Suma de monomios de indice par: sll1 y sll3" << std::endl;
+  cout << sllp1.PairAdd() << std::endl;
+  cout << sllp3.PairAdd() << std::endl;
+
   return 0;
 }

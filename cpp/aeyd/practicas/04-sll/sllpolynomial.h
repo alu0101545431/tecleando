@@ -41,6 +41,9 @@ class SllPolynomial : public sll_t<pair_double_t> {
   double Eval(const double) const;
   bool IsEqual(const SllPolynomial&, const double = EPS) const;
   void Sum(const SllPolynomial&, SllPolynomial&, const double = EPS);
+
+  // modificacion
+  double PairAdd();
 };
 
 bool IsNotZero(const double val, const double eps = EPS) {
@@ -130,7 +133,6 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum,
   second_node = sllpol.get_head();
   pair_double_t aux_pair;
 
-
   // MIENTRAS AMBAS LISTAS NO SE QUEDEN SIN NODOS . . .
   while (first_node != NULL && second_node != NULL) {
     // ASIGNACION DE PARES
@@ -148,7 +150,7 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum,
     } else if (first_node->get_data().get_inx() <
                second_node->get_data().get_inx()) {
       aux_pair.set(first_node->get_data().get_val(),
-                   first_node->get_data().get_inx()); // Asignamos 1er nodo
+                   first_node->get_data().get_inx());  // Asignamos 1er nodo
 
       first_node = first_node->get_next();  // Solo avanza el 1o
       // Viceversa
@@ -185,12 +187,29 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum,
   // VICEVERSA
   while (second_node != NULL) {
     aux_pair.set(second_node->get_data().get_val(),
-                second_node->get_data().get_inx());
+                 second_node->get_data().get_inx());
     second_node = second_node->get_next();
     SllPolyNode* result_node = new SllPolyNode;
     result_node->set_data(aux_pair);
     sllpolsum.insert_after(last_node_placed, result_node);
   }
+}
+
+double SllPolynomial::PairAdd() {
+  // assert (!empty());
+  SllPolyNode* aux_node = new SllPolyNode;
+  aux_node = get_head();
+  double result;
+  // Mientras el puntero aux_node apunte a un nodo . . .
+  while (aux_node != NULL) {
+    // Si el indice del nodo auxiliar es par, sumamos a una variable sumatoria
+    if (aux_node->get_data().get_inx() % 2 == 0) {
+      result += aux_node->get_data().get_val();
+    }
+    // El puntero aux_node ahora apunta al siguiente nodo del que tenía
+    aux_node = aux_node->get_next();
+  }
+  return result;
 }
 
 #endif  // SLLPOLYNOMIAL_H_
