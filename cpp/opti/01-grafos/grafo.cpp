@@ -157,7 +157,7 @@ void GRAFO::RecorridoProfundidad() {
   unsigned postnum_ind = 0;
   unsigned nodo_inicial;
 
-  visitado.resize(v_size);
+  visitado.resize(v_size); // también basta con tomar n
   prenum.resize(v_size);
   postnum.resize(v_size);
   //solicitud al usuario del nodo inicial del recorrido en profundidad
@@ -208,10 +208,17 @@ void GRAFO::bfs_num(
     // Recorremos todos los nodos u adyacentes al nodo k+1
     // Si el nodo u no est� visitado
     {
-      // Lo visitamos
-      // Lo metemos en la cola
-      // le asignamos el predecesor
-      // le calculamos su etiqueta distancia
+      if (!(visitado.at(L[k][j].j))) {
+        // Lo visitamos
+        visitado.at(L[k][j].j) = true;
+        // Lo metemos en la cola
+        cola.push(L[k][j].j);
+        // le asignamos el predecesor
+        pred[j] = k;
+        // le calculamos su etiqueta distancia
+        d[j] = d[k] + 1;
+      }
+      
     };
     // Hemos terminado pues la cola est� vac�a
   };

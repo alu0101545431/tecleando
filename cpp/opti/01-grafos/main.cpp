@@ -105,7 +105,9 @@ int main(int argc, char *argv[]) {
         case 'r':
           cout << "Recorrido por profundidad: \n";
           G.RecorridoProfundidad();
-        break;
+          break;
+        default:
+          break;
       }
     } while (opcion != 'q');
   }
