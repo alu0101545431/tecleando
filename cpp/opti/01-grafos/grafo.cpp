@@ -224,5 +224,13 @@ void GRAFO::bfs_num(
   };
 }
 
-void RecorridoAmplitud() {}  // Construye un recorrido en amplitud desde un
+void RecorridoAmplitud() {
+  unsigned nodo_inicial;
+  vector<bool> visitado;
+  vector<unsigned> pred;
+  vector<unsigned> d;
+  std::cout << "[INPUT]: Indique nodo inicial > ";
+  
+}  // Construye un recorrido en amplitud desde un
                              // nodo inicial
+                            
