@@ -106,6 +106,9 @@ int main(int argc, char *argv[]) {
           cout << "Recorrido por profundidad: \n";
           G.RecorridoProfundidad();
           break;
+        case 'm':
+          G.RecorridoAmplitud();
+          break;
         default:
           break;
       }

@@ -103,20 +103,22 @@ void GRAFO ::Mostrar_Listas(int l) {
       break;
     case 1:
       for (int nodo = 0; nodo < LS.size(); ++nodo) {
-      std::cout << "[NODO " << nodo + 1 << "]: ";
-        for (int nodo_sucesor = 0; nodo_sucesor < LS[nodo].size(); ++nodo_sucesor) {
-        std::cout << LS[nodo][nodo_sucesor].j + 1 << " ";
+        std::cout << "[NODO " << nodo + 1 << "]: ";
+        for (int nodo_sucesor = 0; nodo_sucesor < LS[nodo].size();
+             ++nodo_sucesor) {
+          std::cout << LS[nodo][nodo_sucesor].j + 1 << " ";
         }
-      std::cout << std::endl;
+        std::cout << std::endl;
       }
       break;
     case -1:
       for (int nodo = 0; nodo < LP.size(); ++nodo) {
-      std::cout << "[NODO " << nodo + 1 << "]: ";
-        for (int nodo_predecesor = 0; nodo_predecesor < LP[nodo].size(); ++nodo_predecesor) {
-        std::cout << LP[nodo][nodo_predecesor].j + 1 << " ";
+        std::cout << "[NODO " << nodo + 1 << "]: ";
+        for (int nodo_predecesor = 0; nodo_predecesor < LP[nodo].size();
+             ++nodo_predecesor) {
+          std::cout << LP[nodo][nodo_predecesor].j + 1 << " ";
         }
-      std::cout << std::endl;
+        std::cout << std::endl;
       }
       break;
     default:
@@ -126,9 +128,7 @@ void GRAFO ::Mostrar_Listas(int l) {
 
 void GRAFO::Mostrar_Matriz()  // Muestra la matriz de adyacencia, tanto los
                               // nodos adyacentes como sus costes
-{
-  
-}
+{}
 
 void GRAFO::dfs_num(
     unsigned i, vector<LA_nodo> L, vector<bool> &visitado,
@@ -148,7 +148,7 @@ void GRAFO::dfs_num(
 }
 
 void GRAFO::RecorridoProfundidad() {
-  //creación e inicialización de variables y vectores
+  // creación e inicialización de variables y vectores
   int v_size = LS.size() - 1;
   vector<bool> visitado;
   vector<unsigned> prenum;
@@ -157,26 +157,28 @@ void GRAFO::RecorridoProfundidad() {
   unsigned postnum_ind = 0;
   unsigned nodo_inicial;
 
-  visitado.resize(v_size); // también basta con tomar n
+  visitado.resize(v_size);  // también basta con tomar n
   prenum.resize(v_size);
   postnum.resize(v_size);
-  //solicitud al usuario del nodo inicial del recorrido en profundidad
+  // solicitud al usuario del nodo inicial del recorrido en profundidad
   std::cout << "[INPUT]: Nodo de inicio del recorrido en profundidad > ";
   std::cin >> nodo_inicial;
-  dfs_num(nodo_inicial - 1, LS, visitado, prenum, prenum_ind, postnum, postnum_ind);
-  //mostrar en pantalla el preorden
+  dfs_num(nodo_inicial - 1, LS, visitado, prenum, prenum_ind, postnum,
+          postnum_ind);
+  // mostrar en pantalla el preorden
   std::cout << "[INFO]: Preorden" << std::endl;
   for (int i = 0; i < prenum.size(); ++i) {
-    std::cout << "[" << prenum[i] + 1 << "]" << " -> ";
+    std::cout << "[" << prenum[i] + 1 << "]"
+              << " -> ";
   }
   std::cout << std::endl;
-  //mostrar en pantalla el postorden
+  // mostrar en pantalla el postorden
   std::cout << "[INFO]: PostOrden" << std::endl;
   for (int i = 0; i < postnum.size(); ++i) {
-    std::cout << "[" << postnum[i] + 1 << "]" << " -> ";
+    std::cout << "[" << postnum[i] + 1 << "]"
+              << " -> ";
   }
   std::cout << std::endl;
-
 }
 
 void GRAFO::bfs_num(
@@ -214,23 +216,51 @@ void GRAFO::bfs_num(
         // Lo metemos en la cola
         cola.push(L[k][j].j);
         // le asignamos el predecesor
-        pred[j] = k;
+        pred[L[k][j].j] = k + 1;
         // le calculamos su etiqueta distancia
-        d[j] = d[k] + 1;
+        d[L[k][j].j] = d[k] + 1;
       }
-      
     };
     // Hemos terminado pues la cola est� vac�a
   };
 }
 
-void RecorridoAmplitud() {
-  unsigned nodo_inicial;
-  vector<bool> visitado;
+void GRAFO::RecorridoAmplitud() {
   vector<unsigned> pred;
   vector<unsigned> d;
-  std::cout << "[INPUT]: Indique nodo inicial > ";
-  
+  int nodo_inicial;
+  std::cout << "Digite el nodo del que quiere iniciar el recorrido [1 - " << n
+            << "]: ";
+  std::cin >> nodo_inicial;
+  std::cout << "\n";
+  bfs_num((nodo_inicial - 1), LS, pred, d);
+  int d_max{0};
+
+  for (int contador = 0; contador < n; contador++) {
+    if (d[contador] > d_max) {
+      d_max = d[contador];
+    }
+  }
+
+  std::cout << "Nodos segun distancia al nodo inicial en numero de aristas\n";
+  std::cout << "Distancia 0 aristas : " << nodo_inicial << endl;
+  for (int contador = 1; contador <= d_max; ++contador) {
+    std::cout << "Distancia " << contador << " aristas : ";
+    for (int contador_2 = 0; contador_2 < n; contador_2++) {
+      if (contador == d[contador_2]) {
+        std::cout << contador_2 + 1 << " ";
+      }
+    }
+    std::cout << "\n";
+  }
+
+  cout << "La lista de predecesores es la siguiente:\n";
+  for (int i = 0; i < n; ++i) {
+    if (pred[i] == 0) {
+      cout << "Predecesor del nodo " << i + 1 << " : -" << endl;
+    } else {
+      cout << "Predecesor del nodo " << i + 1 << " : " << pred.at(i) << endl;
+    }
+  }
 }  // Construye un recorrido en amplitud desde un
-                             // nodo inicial
-                            
+   // nodo inicial
