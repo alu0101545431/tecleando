@@ -24,8 +24,8 @@ void menu(unsigned dirigido, char &opcion)
     cout << "i. Mostrar [i]nformacion basica del grafo" << endl;
     cout << "s. Mostrar la lista de [s]ucesores del grafo" << endl;
     cout << "p. Mostrar la lista de [p]redecesores del grafo" << endl;
-    cout << "m. Realizar un recorrido en amplitud del grafo" << endl;
-    cout << "r. Realizar un recorrido en profundidad del grafo" << endl;
+    cout << "m. Realizar un recorrido en a[m]plitud del grafo" << endl;
+    cout << "r. Realizar un recorrido en p[r]ofundidad del grafo" << endl;
     cout << "d. Caminos minimos: [d]ijkstra" << endl;
     cout << "f. Caminos minimos: [f]loyd-warshall" << endl;
     // Aqu� se a�aden m�s opciones al men� del grafo dirigido
@@ -54,18 +54,13 @@ int main(int argc, char *argv[]) {
   if (error_apertura == 1) {
     cout << "Error en la apertura del fichero desde argumento: revisa nombre y "
             "formato"
-         << endl;
-    // pressanykey();
-    // clrscr();
+         << endl;;
   } else {
     cout << "Grafo cargado desde el fichero " << nombrefichero << endl;
-    // pressanykey();
-    // clrscr();
     do {
       menu(G.Es_dirigido(), opcion);
       switch (opcion) {
         case 'c':
-          // clrscr();
           cout << "Introduce el nombre completo del fichero de datos" << endl;
           cin >> nombrefichero;
           G.actualizar(nombrefichero, error_apertura);
@@ -77,16 +72,11 @@ int main(int argc, char *argv[]) {
             cout << "Fichero cargado correctamente desde " << nombrefichero
                  << endl;
           };
-          // pressanykey();
-          // clrscr();
           break;
 
         case 'i':
-          // clrscr();
           cout << "Grafo cargado desde " << nombrefichero << endl;
           G.Info_Grafo();
-          // pressanykey();
-          // clrscr();
           break;
           // Situar aqu� el resto de opciones del men�
         case 'a':

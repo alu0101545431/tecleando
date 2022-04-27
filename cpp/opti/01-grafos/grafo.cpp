@@ -220,7 +220,7 @@ void GRAFO::bfs_num(
     // Recorremos todos los nodos u adyacentes al nodo k+1
     // Si el nodo u no est� visitado
     {
-      if (!(visitado.at(L[k][j].j))) {
+      if (!(visitado.at(L[k][j].j))) { // si el nodo ady/suc/pred NO ha sido vis
         // Lo visitamos
         visitado.at(L[k][j].j) = true;
         // Lo metemos en la cola
@@ -239,10 +239,9 @@ void GRAFO::RecorridoAmplitud() {
   vector<unsigned> pred;
   vector<unsigned> d;
   int nodo_inicial;
-  std::cout << "Digite el nodo del que quiere iniciar el recorrido [1 - " << n
-            << "]: ";
+  std::cout << "Elija el nodo de partida? [1 - " << n << "]: ";
   std::cin >> nodo_inicial;
-  std::cout << "\n";
+  std::cout << std::endl;
   bfs_num((nodo_inicial - 1), LS, pred, d);
   int d_max{0};
 
@@ -252,24 +251,29 @@ void GRAFO::RecorridoAmplitud() {
     }
   }
 
-  std::cout << "Nodos segun distancia al nodo inicial en numero de aristas\n";
+  std::cout << "Nodos segun distancia al nodo inicial en numero de aristas" 
+            << std::endl;
+  // d_arista representa la cantidad de aristas que separan los nodos
+  // nodo_X nos sirve de índice para ir recorriendo el vector
+  // d para ir recogiendo las distancias de cada nodo, para . . .
   std::cout << "Distancia 0 aristas : " << nodo_inicial << endl;
-  for (int contador = 1; contador <= d_max; ++contador) {
-    std::cout << "Distancia " << contador << " aristas";
-    for (int contador_2 = 0; contador_2 < n; contador_2++) {
-      if (contador == d[contador_2]) {
-        std::cout  << " : " << contador_2 + 1;
+  for (int d_arista = 1; d_arista <= d_max; ++d_arista) {
+    std::cout << "Distancia " << d_arista << " aristas";
+    for (int nodo_x = 0; nodo_x < n; nodo_x++) {
+      if (d_arista == d[nodo_x]) {  // comprobar que la distancia coincide
+                                    // con la del nodo . . .
+        std::cout  << " : " << nodo_x + 1; // e imprimirlo
       }
     }
-    std::cout << "\n";
+    std::cout << std::endl;
   }
 
-  cout << "La lista de predecesores es la siguiente:\n";
+  std::cout << "Lista de predecesores" << std::endl;
   for (int i = 0; i < n; ++i) {
     if (pred[i] == 0) {
-      cout << "Predecesor del nodo " << i + 1 << " : -" << endl;
+      std::cout << "Predecesor del nodo " << i + 1 << " : -" << std::endl;
     } else {
-      cout << "Predecesor del nodo " << i + 1 << " : " << pred.at(i) << endl;
+      std::cout << "Predecesor del nodo " << i + 1 << " : " << pred.at(i) << std::endl;
     }
   }
 }  // Construye un recorrido en amplitud desde un
