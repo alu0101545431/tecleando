@@ -11,14 +11,14 @@
 void GRAFO::destroy() {
   for (unsigned i = 0; i < n; i++) {
     LS[i].clear();
-    //A[i].clear();
+    // A[i].clear();
     if (dirigido == 1) {
       LP[i].clear();
     };
   }
   LS.clear();
   LP.clear();
-  //A.clear();
+  // A.clear();
 }
 
 void GRAFO::build(char nombrefichero[85], int &errorapertura) {
@@ -49,7 +49,6 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
         dummy.j = i - 1;
         dummy.c = dummy.c;
         LS[j - 1].push_back(dummy);
-
       }
       // pendiente la construcci�n de LP, si es dirigido
       if (Es_dirigido()) {
@@ -106,7 +105,8 @@ void GRAFO ::Mostrar_Listas(int l) {
         std::cout << "[NODO " << nodo + 1 << "]: ";
         for (int nodo_sucesor = 0; nodo_sucesor < LS[nodo].size();
              ++nodo_sucesor) {
-          std::cout << LS[nodo][nodo_sucesor].j + 1 << " ";
+          std::cout << LS[nodo][nodo_sucesor].j + 1 << " [" << LS[nodo][nodo_sucesor].c
+                    << "] ";
         }
         std::cout << std::endl;
       }
@@ -116,7 +116,8 @@ void GRAFO ::Mostrar_Listas(int l) {
         std::cout << "[NODO " << nodo + 1 << "]: ";
         for (int nodo_sucesor = 0; nodo_sucesor < LS[nodo].size();
              ++nodo_sucesor) {
-          std::cout << LS[nodo][nodo_sucesor].j + 1 << " ";
+          std::cout << LS[nodo][nodo_sucesor].j + 1 << "["
+                    << LS[nodo][nodo_sucesor].c << "] ";
         }
         std::cout << std::endl;
       }
@@ -126,7 +127,9 @@ void GRAFO ::Mostrar_Listas(int l) {
         std::cout << "[NODO " << nodo + 1 << "]: ";
         for (int nodo_predecesor = 0; nodo_predecesor < LP[nodo].size();
              ++nodo_predecesor) {
-          std::cout << LP[nodo][nodo_predecesor].j + 1 << " ";
+          std::cout << LP[nodo][nodo_predecesor].j + 1 << "["
+                    << LP[nodo][nodo_predecesor].c << "] ";
+          
         }
         std::cout << std::endl;
       }
@@ -220,7 +223,8 @@ void GRAFO::bfs_num(
     // Recorremos todos los nodos u adyacentes al nodo k+1
     // Si el nodo u no est� visitado
     {
-      if (!(visitado.at(L[k][j].j))) { // si el nodo ady/suc/pred NO ha sido vis
+      if (!(visitado.at(
+              L[k][j].j))) {  // si el nodo ady/suc/pred NO ha sido vis
         // Lo visitamos
         visitado.at(L[k][j].j) = true;
         // Lo metemos en la cola
@@ -251,7 +255,7 @@ void GRAFO::RecorridoAmplitud() {
     }
   }
 
-  std::cout << "Nodos segun distancia al nodo inicial en numero de aristas" 
+  std::cout << "Nodos segun distancia al nodo inicial en numero de aristas"
             << std::endl;
   // d_arista representa la cantidad de aristas que separan los nodos
   // nodo_X nos sirve de índice para ir recorriendo el vector
@@ -262,18 +266,19 @@ void GRAFO::RecorridoAmplitud() {
     for (int nodo_x = 0; nodo_x < n; nodo_x++) {
       if (d_arista == d[nodo_x]) {  // comprobar que la distancia coincide
                                     // con la del nodo . . .
-        std::cout  << " : " << nodo_x + 1; // e imprimirlo
+        std::cout << " : " << nodo_x + 1;  // e imprimirlo
       }
     }
     std::cout << std::endl;
   }
 
   std::cout << "Lista de predecesores" << std::endl;
-  for (int i = 0; i < n; ++i) {
-    if (pred[i] == 0) {
+  for (int i = 0; i < n; ++i) { // i representa un indice, nodos
+    if (pred[i] == 0) { // si el predecesor de i es 0, imprimo i+1
       std::cout << "Predecesor del nodo " << i + 1 << " : -" << std::endl;
-    } else {
-      std::cout << "Predecesor del nodo " << i + 1 << " : " << pred.at(i) << std::endl;
+    } else { // si el predecesor del nodo es distinto de cero, imprimo i+1
+      std::cout << "Predecesor del nodo " << i + 1 << " : " << pred.at(i)
+                << std::endl;
     }
   }
 }  // Construye un recorrido en amplitud desde un
