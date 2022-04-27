@@ -204,7 +204,7 @@ void GRAFO::bfs_num(
 
   pred.resize(n, 0);  // creamos e inicializamos pred y d
   d.resize(n, 0);
-  pred[i] = i;
+  pred[i] = i + 1;
   d[i] = 0;
 
   queue<unsigned> cola;  // creamos e inicializamos la cola
@@ -255,10 +255,10 @@ void GRAFO::RecorridoAmplitud() {
   std::cout << "Nodos segun distancia al nodo inicial en numero de aristas\n";
   std::cout << "Distancia 0 aristas : " << nodo_inicial << endl;
   for (int contador = 1; contador <= d_max; ++contador) {
-    std::cout << "Distancia " << contador << " aristas : ";
+    std::cout << "Distancia " << contador << " aristas";
     for (int contador_2 = 0; contador_2 < n; contador_2++) {
       if (contador == d[contador_2]) {
-        std::cout << contador_2 + 1 << " ";
+        std::cout  << " : " << contador_2 + 1;
       }
     }
     std::cout << "\n";
