@@ -24,7 +24,6 @@ void menu(unsigned dirigido, char &opcion)
     cout << "i. Mostrar [i]nformacion basica del grafo" << endl;
     cout << "s. Mostrar la lista de [s]ucesores del grafo" << endl;
     cout << "p. Mostrar la lista de [p]redecesores del grafo" << endl;
-    cout << "y. Mostrar la lista de ad[y]acencia del grafo" << endl;
     cout << "m. Realizar un recorrido en amplitud del grafo" << endl;
     cout << "r. Realizar un recorrido en profundidad del grafo" << endl;
     cout << "d. Caminos minimos: [d]ijkstra" << endl;
@@ -90,7 +89,7 @@ int main(int argc, char *argv[]) {
           // clrscr();
           break;
           // Situar aqu� el resto de opciones del men�
-        case 'y':
+        case 'a':
           cout << "[INFO]: Lista de adyacencia de " << nombrefichero << endl;
           G.Mostrar_Listas(0);
           break;

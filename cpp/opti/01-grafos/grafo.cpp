@@ -11,14 +11,14 @@
 void GRAFO::destroy() {
   for (unsigned i = 0; i < n; i++) {
     LS[i].clear();
-    A[i].clear();
+    //A[i].clear();
     if (dirigido == 1) {
       LP[i].clear();
     };
   }
   LS.clear();
   LP.clear();
-  A.clear();
+  //A.clear();
 }
 
 void GRAFO::build(char nombrefichero[85], int &errorapertura) {
@@ -45,9 +45,11 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
       // situamos en la posici�n del nodo i a dummy mediante push_back
       LS[i - 1].push_back(dummy);
       // pendiente de hacer un segundo push_back si es no dirigido. O no.
-      if (!Es_dirigido()) {
+      if (!Es_dirigido() && (i - 1) != (j - 1)) {
         dummy.j = i - 1;
+        dummy.c = dummy.c;
         LS[j - 1].push_back(dummy);
+
       }
       // pendiente la construcci�n de LP, si es dirigido
       if (Es_dirigido()) {
@@ -100,6 +102,14 @@ void Mostrar_Lista(vector<LA_nodo> L) {
 void GRAFO ::Mostrar_Listas(int l) {
   switch (l) {
     case 0:
+      for (int nodo = 0; nodo < LS.size(); ++nodo) {
+        std::cout << "[NODO " << nodo + 1 << "]: ";
+        for (int nodo_sucesor = 0; nodo_sucesor < LS[nodo].size();
+             ++nodo_sucesor) {
+          std::cout << LS[nodo][nodo_sucesor].j + 1 << " ";
+        }
+        std::cout << std::endl;
+      }
       break;
     case 1:
       for (int nodo = 0; nodo < LS.size(); ++nodo) {
@@ -167,14 +177,14 @@ void GRAFO::RecorridoProfundidad() {
           postnum_ind);
   // mostrar en pantalla el preorden
   std::cout << "[INFO]: Preorden" << std::endl;
-  for (int i = 0; i < prenum.size(); ++i) {
+  for (int i = 0; i < prenum_ind; ++i) {
     std::cout << "[" << prenum[i] + 1 << "]"
               << " -> ";
   }
   std::cout << std::endl;
   // mostrar en pantalla el postorden
   std::cout << "[INFO]: PostOrden" << std::endl;
-  for (int i = 0; i < postnum.size(); ++i) {
+  for (int i = 0; i < postnum_ind; ++i) {
     std::cout << "[" << postnum[i] + 1 << "]"
               << " -> ";
   }
