@@ -181,15 +181,22 @@ void GRAFO::RecorridoProfundidad() {
   // mostrar en pantalla el preorden
   std::cout << "[INFO]: Preorden" << std::endl;
   for (int i = 0; i < prenum_ind; ++i) {
-    std::cout << "[" << prenum[i] + 1 << "]"
-              << " -> ";
+    std::cout << "[" << prenum[i] + 1 << "]";
+    if (i < prenum_ind - 1) {
+      std::cout << " -> ";
+    }
   }
   std::cout << std::endl;
   // mostrar en pantalla el postorden
   std::cout << "[INFO]: PostOrden" << std::endl;
   for (int i = 0; i < postnum_ind; ++i) {
-    std::cout << "[" << postnum[i] + 1 << "]"
-              << " -> ";
+    std::cout << "[" << postnum[i] + 1 << "]";
+              
+    if (i < postnum_ind - 1) {
+      std::cout << " -> ";
+    }
+    
+    
   }
   std::cout << std::endl;
 }

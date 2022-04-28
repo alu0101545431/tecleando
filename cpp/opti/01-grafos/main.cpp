@@ -24,12 +24,12 @@ void menu(unsigned dirigido, char &opcion)
     cout << "i. Mostrar [i]nformacion basica del grafo" << endl;
     cout << "s. Mostrar la lista de [s]ucesores del grafo" << endl;
     cout << "p. Mostrar la lista de [p]redecesores del grafo" << endl;
-    cout << "m. Realizar un recorrido en a[m]plitud del grafo" << endl;
-    cout << "r. Realizar un recorrido en p[r]ofundidad del grafo" << endl;
     cout << "d. Caminos minimos: [d]ijkstra" << endl;
     cout << "f. Caminos minimos: [f]loyd-warshall" << endl;
     // Aqu� se a�aden m�s opciones al men� del grafo dirigido
   };
+  cout << "m. Realizar un recorrido en a[m]plitud del grafo" << endl;
+  cout << "r. Realizar un recorrido en p[r]ofundidad del grafo" << endl;
   cout << "q. Finalizar el programa" << endl;
   cout << "Introduce la letra de la accion a ejecutar  > ";
   cin >> opcion;
