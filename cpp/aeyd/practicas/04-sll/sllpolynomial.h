@@ -44,6 +44,7 @@ class SllPolynomial : public sll_t<pair_double_t> {
 
   // modificacion
   double PairAdd();
+  void Delete(const double coefficient, const double = EPS);
 };
 
 bool IsNotZero(const double val, const double eps = EPS) {
@@ -96,7 +97,7 @@ double SllPolynomial::Eval(const double x) const {
   SllPolyNode* aux = get_head();
   while (aux != NULL) {
     result += aux->get_data().get_val() * pow(x, aux->get_data().get_inx());
-    aux = aux->get_next();
+    aux = aux->get_next(); 
   }
   return result;
 }
@@ -211,5 +212,25 @@ double SllPolynomial::PairAdd() {
   }
   return result;
 }
+
+void SllPolynomial::Delete(const double coefficient, const double eps) {
+  bool found = false;
+  SllPolyNode* aux = get_head();
+  SllPolyNode* last_node_visited;
+  while (aux != NULL && !found) { // mientras no lo encontremos y la lista no
+                                  // se termine . . .
+    if (fabs(aux->get_data().get_val() - coefficient) <= eps) {
+                                      // si es igual al coef pasado . . .
+      found = true; // ya se ha encontrado
+      erase_after(last_node_visited); // borramos este nodo, siguiente
+                                      // del ultimo que se visitó
+    }
+    last_node_visited = aux;  // antes de cambiar, guardamos este nodo
+                              // como el ultimo visitado
+    aux = aux->get_next();  // sltamos al siguiente nodo
+  }  
+}
+
+
 
 #endif  // SLLPOLYNOMIAL_H_

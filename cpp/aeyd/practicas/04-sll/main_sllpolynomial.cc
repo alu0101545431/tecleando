@@ -78,5 +78,12 @@ int main()
   cout << sllp1.PairAdd() << std::endl;
   cout << sllp3.PairAdd() << std::endl;
 
+  double x = 5.6;
+  cout << "[MOD]: Borrar 5.6 del sllp1" << std::endl;
+  sllp1.Delete(x);
+  cout << sllp1 << std::endl;
+
   return 0;
+  
+
 }
