@@ -50,14 +50,19 @@ int main(void) {
 
   pila_vector.write();
   cout << "MODIFICACION" << std::endl;
-  pila_vector.EndReplace();
+  // pila_vector.EndReplace();
 
-  pila_vector.write();
+  // pila_vector.write();
 
   stack_v_t<char> pila_aux;
-  pila_vector.reverse(pila_aux);
+  // pila_vector.reverse(pila_aux);
 
-  pila_aux.write();
+  // pila_aux.write();
+
+  cout << "ELIMINAR IMPARES" << endl;
+  pila_vector.RemoveOdd();
+
+  pila_vector.write();
   
 	
   return 0;

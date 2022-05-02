@@ -36,6 +36,8 @@ template<class T> class stack_v_t {
   bool full(void) const;
   void EndReplace(void);
   void reverse(stack_v_t&);
+  void RemoveOdd();
+  void MaxValue();
 
   // E/S
   std::ostream& write(std::ostream& = std::cout) const;
@@ -97,6 +99,26 @@ void stack_v_t<T>::reverse(stack_v_t& new_stack) {
     pop(); // eliminamos el final de la otra
   }
 }
+
+template<class T>
+void stack_v_t<T>::RemoveOdd() {
+  stack_v_t<T> aux_stack;
+  int stack_size = 0;
+  while (!empty()) {
+    aux_stack.push(top());
+    pop();
+    ++stack_size;
+  }
+  while (!aux_stack.empty()) {
+     if (stack_size % 2) {
+      push(aux_stack.top());
+    }
+    aux_stack.pop();
+    --stack_size;
+  }
+}
+
+// EJERCICIO 5
 
 
 #endif  // STACKV_H_
