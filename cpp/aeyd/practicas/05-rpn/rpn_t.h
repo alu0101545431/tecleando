@@ -65,7 +65,7 @@ void rpn_t<T>::operate_(const char c) {
          c == '^'|| c == 'c' || c == 'r');
   int first_operator = 0, second_operator = 0;
   // poner código
-  if (c == '+' || c == '-' || c == '*' || c == '/' || c == 'l' || c == '^') {
+  if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
     first_operator = stack_.top();
     std::cout << "   Sacamos de la pila un operando: " << first_operator
               << std::endl;
@@ -74,8 +74,10 @@ void rpn_t<T>::operate_(const char c) {
     std::cout << "   Sacamos de la pila otro operando: " << second_operator
               << std::endl;
     stack_.pop();
-  } else if (c == 'c' || c == 'r') {
+  } else if (c == 'c' || c == 'r' || c == 'l') {
     first_operator = stack_.top();
+    std::cout << "   Sacamos de la pila el operando: " << first_operator
+              << std::endl;
     stack_.pop();
   }
   switch (c) {
@@ -87,13 +89,13 @@ void rpn_t<T>::operate_(const char c) {
       stack_.push(second_operator - first_operator);  // preguntar tutorizada
       break;
     case '/':
-      stack_.push(first_operator / second_operator);
+      stack_.push(second_operator / first_operator);
       break;
     case '*':
       stack_.push(first_operator * second_operator);
       break;
     case '^':
-      stack_.push(pow(first_operator, second_operator));
+      stack_.push(pow(second_operator, first_operator));
       break;
     case 'r':
       stack_.push(sqrt(first_operator));
