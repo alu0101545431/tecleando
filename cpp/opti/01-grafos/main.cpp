@@ -19,6 +19,7 @@ void menu(unsigned dirigido, char &opcion)
   {
     cout << "i. Mostrar [i]nformacion basica del grafo" << endl;
     cout << "a. Mostrar la lista de [a]dyacencia del grafo" << endl;
+    cout << "k. Hallar arbol generador de minimo coste: [k]ruskal" << endl;
     // Aqu� se a�aden m�s opciones al men� del grafo no dirigido
   } else {
     cout << "i. Mostrar [i]nformacion basica del grafo" << endl;
@@ -100,6 +101,8 @@ int main(int argc, char *argv[]) {
           break;
         default:
           break;
+        case 'k':
+          G.Kruskal();
       }
     } while (opcion != 'q');
   }

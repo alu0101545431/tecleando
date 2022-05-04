@@ -29,8 +29,15 @@ typedef struct
 	int      c; // atributo para expresar los costes, pesos, las longitudes, las inversiones, etc...
 } ElementoLista;
 
+typedef struct {
+        unsigned extremo1, extremo2; // nodos extremos de la arista
+        int peso; // peso de la arista
+    } AristaPesada;
+
 // definicion del tipo de una lista de adyacencia de un nodo
 typedef vector<ElementoLista> LA_nodo;
+
+void BubbleSort(vector<AristaPesada>&, unsigned&);
 
 class GRAFO
  {
@@ -41,6 +48,7 @@ class GRAFO
 	vector<LA_nodo>     LP;        // Lista de adyacencia de los predecesores: es una matriz dode cada fila posiblemente es posiblemente de distinto tama�o
 	vector<LA_nodo>     A;         // Matriz de adyacencia, tanto adyacencia como costes
 	void destroy();                // Destructor del LS, A, y LP, en su caso
+	vector <AristaPesada> Aristas; // Vector de Aristas pesadas que ordenaremos
 	void build (char nombrefichero[85], int &errorapertura); //Crea LS, A y LP en su caso, desde la lectura del fichero
 	void dfs_num(unsigned i, vector<LA_nodo>  L, vector<bool> &visitado, vector<unsigned> &prenum, unsigned &prenum_ind, vector<unsigned> &postnum, unsigned &postnum_ind); //Recorrido en profundidad recursivo con recorridos enum y postnum
     void bfs_num(unsigned i, vector<LA_nodo>  L, vector<unsigned> &pred, vector<unsigned> &d); //Recorrido en amplitud con c�lculo de pred y d
@@ -53,7 +61,10 @@ public:
      void Mostrar_Matriz(); //Muestra la matriz de adyacencia: nodos y costes
      void RecorridoProfundidad(); //Construye un recorrido en profundidad desde un nodo inicial
      void RecorridoAmplitud(); //Construye un recorrido en amplitud desde un nodo inicial
+     void Kruskal();
      ~GRAFO(); //Destructor del objeto grafo
 };
+
+
 
 #endif

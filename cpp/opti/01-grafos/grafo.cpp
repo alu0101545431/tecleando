@@ -58,6 +58,23 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
       // pendiente del valor a devolver en errorapertura
       //...
     }
+    /*Cargamos todas las aristas de la lista de adyacencia*/
+    std::cout
+        << "[INFO]: Cargando aristas de lista de adyacencia para Kruskal . . ."
+        << std::endl;
+    Aristas.resize(m);
+    k = 0;
+    for (unsigned i = 0; i < n; i++) {
+      for (unsigned j = 0; j < LS[i].size(); j++) {
+        if (i < LS[i][j].j) {
+          Aristas[k].extremo1 = i;
+          Aristas[k].extremo2 = LS[i][j].j;
+          Aristas[k++].peso = LS[i][j].c;
+        }
+      }
+    };
+    std::cout << "[INFO]: Ordenando el vector . . ." << std::endl;
+    BubbleSort(Aristas, m);  // ordenamos el vector aristas
   } else {
     errorapertura = true;
   }
@@ -105,8 +122,8 @@ void GRAFO ::Mostrar_Listas(int l) {
         std::cout << "[NODO " << nodo + 1 << "]: ";
         for (int nodo_sucesor = 0; nodo_sucesor < LS[nodo].size();
              ++nodo_sucesor) {
-          std::cout << LS[nodo][nodo_sucesor].j + 1 << " [" << LS[nodo][nodo_sucesor].c
-                    << "] ";
+          std::cout << LS[nodo][nodo_sucesor].j + 1 << " ["
+                    << LS[nodo][nodo_sucesor].c << "] ";
         }
         std::cout << std::endl;
       }
@@ -129,7 +146,6 @@ void GRAFO ::Mostrar_Listas(int l) {
              ++nodo_predecesor) {
           std::cout << LP[nodo][nodo_predecesor].j + 1 << "["
                     << LP[nodo][nodo_predecesor].c << "] ";
-          
         }
         std::cout << std::endl;
       }
@@ -191,12 +207,10 @@ void GRAFO::RecorridoProfundidad() {
   std::cout << "[INFO]: PostOrden" << std::endl;
   for (int i = 0; i < postnum_ind; ++i) {
     std::cout << "[" << postnum[i] + 1 << "]";
-              
+
     if (i < postnum_ind - 1) {
       std::cout << " -> ";
     }
-    
-    
   }
   std::cout << std::endl;
 }
@@ -280,13 +294,62 @@ void GRAFO::RecorridoAmplitud() {
   }
 
   std::cout << "Lista de predecesores" << std::endl;
-  for (int i = 0; i < n; ++i) { // i representa un indice, nodos
-    if (pred[i] == 0) { // si el predecesor de i es 0, imprimo i+1
+  for (int i = 0; i < n; ++i) {  // i representa un indice, nodos
+    if (pred[i] == 0) {          // si el predecesor de i es 0, imprimo i+1
       std::cout << "Predecesor del nodo " << i + 1 << " : -" << std::endl;
-    } else { // si el predecesor del nodo es distinto de cero, imprimo i+1
+    } else {  // si el predecesor del nodo es distinto de cero, imprimo i+1
       std::cout << "Predecesor del nodo " << i + 1 << " : " << pred.at(i)
                 << std::endl;
     }
   }
 }  // Construye un recorrido en amplitud desde un
    // nodo inicial
+void BubbleSort(vector<AristaPesada> &v_aristas, unsigned &numero_aristas) {
+  for (int i = 0; i < numero_aristas; ++i) {
+    bool cambio = 0;
+    for (int j = 0; j < numero_aristas - i; ++j) {  // revisar lo del - 1
+      if (v_aristas[j].peso > v_aristas[j + 1].peso) {
+        int aux = v_aristas[j].peso;
+        v_aristas[j] = v_aristas[j + 1];
+        v_aristas[j + 1].peso = aux;
+      }
+      if (!cambio) {
+        i = numero_aristas;
+      }
+    }
+  }
+}
+void GRAFO::Kruskal() {
+  vector<unsigned> raiz;
+  vector<AristaPesada>
+      T = {};  // Vector con las aristas del arbol gdor de minimo coste
+  raiz.resize(n);
+  for (unsigned q = 0; q < n; q++) {
+    raiz[q] = q;
+  };
+  // Mientras en T no haya n-1 aristas
+  AristaPesada e;
+  unsigned indice = 0, cont = 0;
+  int peso_total = 0;
+  while (T.size() <= n - 1) {
+    // Sea e la sig arista de menor coste
+    e = Aristas[indice + 1];
+    // Si raiz[i] != raiz[j] entonces
+    if (raiz[e.extremo1] != raiz[e.extremo2]) {
+      T.push_back(Aristas[indice + 1]);
+      std::cout << "Arista numero " << ++cont << " incorporada ("
+                << e.extremo1 + 1 << "," << e.extremo2 + 1 << "), con peso "
+                << e.peso << std::endl;
+      unsigned kill = raiz[e.extremo1];
+      for (unsigned nodo = 0; nodo < n; ++nodo) {
+        if (raiz[nodo] == kill) {
+          raiz[nodo] = raiz[e.extremo2];
+
+          peso_total += raiz[e.peso];
+        }
+      }
+    }
+  }
+  std::cout << "El peso del arbol generador de minimo coste es " << peso_total
+            << std::endl;
+}
