@@ -37,7 +37,7 @@ typedef struct {
 // definicion del tipo de una lista de adyacencia de un nodo
 typedef vector<ElementoLista> LA_nodo;
 
-void BubbleSort(vector<AristaPesada>&, unsigned&);
+
 
 class GRAFO
  {
@@ -61,6 +61,7 @@ public:
      void Mostrar_Matriz(); //Muestra la matriz de adyacencia: nodos y costes
      void RecorridoProfundidad(); //Construye un recorrido en profundidad desde un nodo inicial
      void RecorridoAmplitud(); //Construye un recorrido en amplitud desde un nodo inicial
+     void BubbleSort();
      void Kruskal();
      ~GRAFO(); //Destructor del objeto grafo
 };

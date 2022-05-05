@@ -74,7 +74,7 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
       }
     };
     std::cout << "[INFO]: Ordenando el vector . . ." << std::endl;
-    BubbleSort(Aristas, m);  // ordenamos el vector aristas
+    BubbleSort();  // ordenamos el vector aristas
   } else {
     errorapertura = true;
   }
@@ -304,25 +304,53 @@ void GRAFO::RecorridoAmplitud() {
   }
 }  // Construye un recorrido en amplitud desde un
    // nodo inicial
-void BubbleSort(vector<AristaPesada> &v_aristas, unsigned &numero_aristas) {
-  for (int i = 0; i < numero_aristas; ++i) {
-    bool cambio = 0;
-    for (int j = 0; j < numero_aristas - i; ++j) {  // revisar lo del - 1
-      if (v_aristas[j].peso > v_aristas[j + 1].peso) {
-        int aux = v_aristas[j].peso;
-        v_aristas[j] = v_aristas[j + 1];
-        v_aristas[j + 1].peso = aux;
+// void GRAFO::BubbleSort() {
+//   for (int i = 0; i < (m); i++) {
+//     bool cambio = 0;
+
+//     for (int j = 0; j < m - i - 1; j++) {  // revisar lo del - 1
+
+//       if (Aristas[j].peso > Aristas[j + 1].peso) {
+//         AristaPesada aux = Aristas[j];
+//         Aristas[j] = Aristas[j + 1];
+//         Aristas[j + 1] = aux;
+//         cambio = 1;
+//       }
+
+//       if (!cambio) {
+//         break;
+//       }
+//     }
+//   }
+void GRAFO::BubbleSort() {
+  unsigned last_unsorted_element_index = Aristas.size();
+  bool sorted = false;
+  do {
+    sorted = false;
+    for (unsigned index = 0; index < last_unsorted_element_index - 1; ++index) {
+      if (Aristas[index].peso > Aristas[index + 1].peso) {
+        AristaPesada aux = Aristas[index];
+        Aristas[index] = Aristas[index + 1];
+        Aristas[index + 1] = aux;
+        sorted = true;
       }
-      if (!cambio) {
-        i = numero_aristas;
-      }
+      
     }
+    
+  } while (sorted);
+
+  // Mostrar vector de aristas ordenado
+  for (int i = 0; i < Aristas.size(); ++i) {
+    std::cout << "[ARISTA 1]: " << Aristas[i].extremo1
+              << ", [ARISTA 2]: " << Aristas[i].extremo2
+              << "[PESO]: " << Aristas[i].peso << std::endl;
   }
 }
+
 void GRAFO::Kruskal() {
   vector<unsigned> raiz;
-  vector<AristaPesada>
-      T = {};  // Vector con las aristas del arbol gdor de minimo coste
+  vector<AristaPesada> T =
+      {};  // Vector con las aristas del arbol gdor de minimo coste
   raiz.resize(n);
   for (unsigned q = 0; q < n; q++) {
     raiz[q] = q;
