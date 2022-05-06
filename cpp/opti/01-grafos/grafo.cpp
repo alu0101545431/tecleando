@@ -334,9 +334,8 @@ void GRAFO::BubbleSort() {
         Aristas[index + 1] = aux;
         sorted = true;
       }
-      
     }
-    
+
   } while (sorted);
 
   // Mostrar vector de aristas ordenado
@@ -348,35 +347,59 @@ void GRAFO::BubbleSort() {
 }
 
 void GRAFO::Kruskal() {
+  unsigned indice = 0, cont = 0;
+  int peso_total = 0;
+  AristaPesada e;
   vector<unsigned> raiz;
-  vector<AristaPesada> T =
-      {};  // Vector con las aristas del arbol gdor de minimo coste
+  // Ordenar las aristas en orden no decreciente por peso
+  // T = vacio
+  vector<AristaPesada> T = {};
   raiz.resize(n);
+  // Para todo nodo i de V hacer raiz[i] = i
   for (unsigned q = 0; q < n; q++) {
     raiz[q] = q;
   };
-  // Mientras en T no haya n-1 aristas
-  AristaPesada e;
-  unsigned indice = 0, cont = 0;
-  int peso_total = 0;
-  while (T.size() <= n - 1) {
+  // Añadimos la primera arista (la de menor coste) . . .
+  // std::cout << "[ADD]: Primera arista incorporada ("
+  //           << Aristas[indice].extremo1 + 1 << ","
+  //           << Aristas[indice].extremo2 + 1 << "), con peso "
+  //           << Aristas[indice].peso << std::endl;
+  // T.push_back(Aristas[indice]);
+  // peso_total += Aristas[indice].peso;
+  // Mientras en T no haya n-1 aristas hacer
+  while (T.size() < n - 1) {
     // Sea e la sig arista de menor coste
-    e = Aristas[indice + 1];
+    e = Aristas[indice];
+    std::cout << "[INFO]: e ahora vale (" << e.extremo1 + 1 << ","
+              << e.extremo2 + 1 << "), con peso " << e.peso << std::endl;
     // Si raiz[i] != raiz[j] entonces
     if (raiz[e.extremo1] != raiz[e.extremo2]) {
+      // T = T u {e}
       T.push_back(Aristas[indice + 1]);
-      std::cout << "Arista numero " << ++cont << " incorporada ("
+      std::cout << "[ADD]: Arista numero " << ++cont << " incorporada ("
                 << e.extremo1 + 1 << "," << e.extremo2 + 1 << "), con peso "
                 << e.peso << std::endl;
+      peso_total += e.peso;
+      // kill = raiz[i]
       unsigned kill = raiz[e.extremo1];
-      for (unsigned nodo = 0; nodo < n; ++nodo) {
+      // Para todo nodo k de V hacer
+      for (unsigned nodo = 0; nodo < Aristas.size(); ++nodo) {
+        // Si raiz[k] == kill entonces hacer
         if (raiz[nodo] == kill) {
-          raiz[nodo] = raiz[e.extremo2];
-
-          peso_total += raiz[e.peso];
+          // raiz[k] = raiz[j]
+          raiz[nodo] = raiz[e.extremo2];  // futuro ilustrar
         }
       }
+      std::cout << "[INFO]: Estado de las etiquetas: ";
+      for (int i = 0; i < raiz.size(); ++i) {
+        std::cout << raiz[i];
+        if (i < raiz.size() - 1) {
+          std::cout << ", ";
+        }
+      }
+      std::cout << std::endl;
     }
+    indice++;
   }
   std::cout << "El peso del arbol generador de minimo coste es " << peso_total
             << std::endl;
