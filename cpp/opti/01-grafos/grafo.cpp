@@ -359,13 +359,6 @@ void GRAFO::Kruskal() {
   for (unsigned q = 0; q < n; q++) {
     raiz[q] = q;
   };
-  // Añadimos la primera arista (la de menor coste) . . .
-  // std::cout << "[ADD]: Primera arista incorporada ("
-  //           << Aristas[indice].extremo1 + 1 << ","
-  //           << Aristas[indice].extremo2 + 1 << "), con peso "
-  //           << Aristas[indice].peso << std::endl;
-  // T.push_back(Aristas[indice]);
-  // peso_total += Aristas[indice].peso;
   // Mientras en T no haya n-1 aristas hacer
   while (T.size() < n - 1) {
     // Sea e la sig arista de menor coste
