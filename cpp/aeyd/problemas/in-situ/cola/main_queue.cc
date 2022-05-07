@@ -23,27 +23,35 @@ int main(void)
 
 	cout << endl;
 
-	while (!cola_vector.empty())
-	{
-		cola_vector.pop();
-		cout << cola_vector;
-	}
+	// while (!cola_vector.empty())
+	// {
+	// 	cola_vector.pop();
+	// 	cout << cola_vector;
+	// }
 
-	queue_l_t<char> cola_lista;
+	// queue_l_t<char> cola_lista;
 
-	for (int i = 0; i < 10; i++)
-	{
-		cola_lista.push('a' + i);
-		cout << cola_lista;
-	}
+	// for (int i = 0; i < 10; i++)
+	// {
+	// 	cola_lista.push('a' + i);
+	// 	cout << cola_lista;
+	// }
 
-	cout << endl;
+	// cout << endl;
 
-	while (!cola_lista.empty())
-	{
-		cola_lista.pop();
-		cout << cola_lista;
-	}
+	// while (!cola_lista.empty())
+	// {
+	// 	cola_lista.pop();
+	// 	cout << cola_lista;
+	// }
+
+	std::cout << "[MOD]:" << std::endl;
+
+
+	std::cout << "PAR: ";
+	cola_vector.EvenOdd();
+	cola_vector.write();
+	std::cout << "IMPAR: ";
 
 	return 0;
 }
