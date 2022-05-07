@@ -21,3 +21,9 @@ void Usage(int argc, char* argv[]) {
     }
   }
 }
+
+int FibonacciSum(int input_number) {
+  if (input_number == 1) {
+    
+  }
+}
