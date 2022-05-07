@@ -8,6 +8,7 @@ std::string& AskForString() {
   std::string input_string;
   std::cout << "[INPUT]: Put the string you want to convert:" << std::endl;
   std::getline(std::cin, input_string);
+  std::cout << "debug";
   return input_string;
 }
 
