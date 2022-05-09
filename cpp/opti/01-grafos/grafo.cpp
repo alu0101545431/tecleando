@@ -371,14 +371,14 @@ void GRAFO::Kruskal() {
       }
       std::cout << "[INFO]: Estado de las etiquetas: ";
       for (int i = 0; i < raiz.size(); ++i) {
-        std::cout << raiz[i];
+        std::cout << raiz[i] + 1;
         if (i < raiz.size() - 1) {
           std::cout << ", ";
         }
       }
       std::cout << std::endl;
     }
-    indice++;
+    indice++; // pasamos a la siguiente arista
   }
   std::cout << "El peso del arbol generador de minimo coste es " << peso_total
             << std::endl;
