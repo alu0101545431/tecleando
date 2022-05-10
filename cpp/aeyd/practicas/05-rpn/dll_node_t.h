@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: ADRIAN LIMA GARCIA
+// FECHA: 10 MAYO 2022
+// EMAIL: ALU0101204147@ULL.EDU.ES
 // VERSION: 2.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // TEMA: 4
