@@ -74,7 +74,7 @@ void GRAFO::build(char nombrefichero[85], int &errorapertura) {
       }
     };
     std::cout << "[INFO]: Ordenando el vector . . ." << std::endl;
-    BubbleSort();  // ordenamos el vector aristas
+    // BubbleSort();  // ordenamos el vector aristas
   } else {
     errorapertura = true;
   }
@@ -307,7 +307,7 @@ void GRAFO::RecorridoAmplitud() {
 
 // Ordenamiento burbuja para el grafo de aristas por costes
 void GRAFO::BubbleSort() {
-  unsigned last_unsorted_element_index = Aristas.size(); 
+  unsigned last_unsorted_element_index = Aristas.size();
   bool sorted = false;
   do {
     sorted = false;
@@ -318,7 +318,7 @@ void GRAFO::BubbleSort() {
         AristaPesada aux = Aristas[index];
         Aristas[index] = Aristas[index + 1];
         Aristas[index + 1] = aux;
-        sorted = true; // se indica que hubo cambio
+        sorted = true;  // se indica que hubo cambio
       }
     }
 
@@ -335,6 +335,7 @@ void GRAFO::BubbleSort() {
 void GRAFO::Kruskal() {
   unsigned indice = 0, cont = 0;
   int peso_total = 0;
+
   AristaPesada e;
   vector<unsigned> raiz;
   // Ordenar las aristas en orden no decreciente por peso
@@ -346,15 +347,29 @@ void GRAFO::Kruskal() {
     raiz[q] = q;
   };
   // Mientras en T no haya n-1 aristas hacer
+  int index = 0, index_min = 0;
+  AristaPesada arista_aux;
   while (T.size() < n - 1) {
+    // Selección / ordenamiento de siguiente arista
+    int peso_minimo = Aristas[index].peso;
+    for (unsigned j = index + 1; j < m; j++) {
+      if (Aristas[j].peso < peso_minimo) {
+        peso_minimo = Aristas[j].peso;
+        index_min = j;
+      }
+    }
+    // Swap de la primera con la que se encontró
+    arista_aux = Aristas[index];
+    Aristas[index] = Aristas[index_min];
+    Aristas[index_min] = arista_aux;
     // Sea e la sig arista de menor coste
-    e = Aristas[indice];
+    e = Aristas[index];
     std::cout << "[INFO]: e ahora vale (" << e.extremo1 + 1 << ","
               << e.extremo2 + 1 << "), con peso " << e.peso << std::endl;
     // Si raiz[i] != raiz[j] entonces
     if (raiz[e.extremo1] != raiz[e.extremo2]) {
       // T = T u {e}
-      T.push_back(Aristas[indice + 1]);
+      T.push_back(Aristas[index]);
       std::cout << "[ADD]: Arista numero " << ++cont << " incorporada ("
                 << e.extremo1 + 1 << "," << e.extremo2 + 1 << "), con peso "
                 << e.peso << std::endl;
@@ -378,7 +393,7 @@ void GRAFO::Kruskal() {
       }
       std::cout << std::endl;
     }
-    indice++;
+    ++index;
   }
   std::cout << "El peso del arbol generador de minimo coste es " << peso_total
             << std::endl;
