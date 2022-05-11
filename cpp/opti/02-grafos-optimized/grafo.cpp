@@ -383,7 +383,6 @@ void GRAFO::Kruskal() {
           raiz[nodo] = raiz[e.extremo2];  // futuro ilustrar
         }
       }
-      std::cout << std::endl;
     }
     ++index;
   }
