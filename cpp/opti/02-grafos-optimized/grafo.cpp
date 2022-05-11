@@ -353,6 +353,7 @@ void GRAFO::Kruskal() {
     // Selección / ordenamiento de siguiente arista
     int peso_minimo = Aristas[index].peso;
     for (unsigned j = index + 1; j < m; j++) {
+      // El peso de la arista es menor que el de la arista de menor peso
       if (Aristas[j].peso < peso_minimo) {
         peso_minimo = Aristas[j].peso;
         index_min = j;
