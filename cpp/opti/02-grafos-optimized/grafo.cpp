@@ -238,7 +238,7 @@ void GRAFO::bfs_num(
                          // contin�a hasta que la cola se vac�e
   {
     unsigned k = cola.front();  // cogemos el nodo k+1 de la cola
-    cola.pop();                 // lo sacamos de la cola
+    cola.pop();                 // lo sacamos de la chola
     // Hacemos el recorrido sobre L desde el nodo k+1
     for (unsigned j = 0; j < L[k].size(); j++)
     // Recorremos todos los nodos u adyacentes al nodo k+1
@@ -356,16 +356,15 @@ void GRAFO::Kruskal() {
       if (Aristas[j].peso < peso_minimo) {
         peso_minimo = Aristas[j].peso;
         index_min = j;
+        // Swap
+        arista_aux = Aristas[index];
+        Aristas[index] = Aristas[index_min];
+        Aristas[index_min] = arista_aux;
       }
     }
-    // Swap de la primera con la que se encontró
-    arista_aux = Aristas[index];
-    Aristas[index] = Aristas[index_min];
-    Aristas[index_min] = arista_aux;
+    
     // Sea e la sig arista de menor coste
     e = Aristas[index];
-    std::cout << "[INFO]: e ahora vale (" << e.extremo1 + 1 << ","
-              << e.extremo2 + 1 << "), con peso " << e.peso << std::endl;
     // Si raiz[i] != raiz[j] entonces
     if (raiz[e.extremo1] != raiz[e.extremo2]) {
       // T = T u {e}
@@ -384,17 +383,10 @@ void GRAFO::Kruskal() {
           raiz[nodo] = raiz[e.extremo2];  // futuro ilustrar
         }
       }
-      std::cout << "[INFO]: Estado de las etiquetas: ";
-      for (int i = 0; i < raiz.size(); ++i) {
-        std::cout << raiz[i];
-        if (i < raiz.size() - 1) {
-          std::cout << ", ";
-        }
-      }
       std::cout << std::endl;
     }
     ++index;
   }
-  std::cout << "El peso del arbol generador de minimo coste es " << peso_total
-            << std::endl;
+  std::cout << "[INFO]: El peso del arbol generador de minimo coste es "
+            << peso_total << std::endl;
 }
