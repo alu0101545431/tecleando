@@ -65,6 +65,13 @@ int main()
   } else {
     cout << "NO" << endl;
   }
+
+  // HOJA DE PROBLEMAS
+  // invertir elementos de un vector
+  v.write();
+  v.Reverse();
+
   return 0;
 }
+
 

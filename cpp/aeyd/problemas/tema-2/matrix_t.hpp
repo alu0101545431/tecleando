@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "vector_t.hpp"
+#include "vector_t.h"
 
 using namespace std;
 

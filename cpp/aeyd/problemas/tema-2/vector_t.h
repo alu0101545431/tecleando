@@ -34,6 +34,8 @@ class vector_t {
 
   // PROBLEMAS TEMA 2
 
+  void Reverse();
+
  private:
   T* v_;
   int sz_;
@@ -164,4 +166,13 @@ bool vector_t<T>::IsPalindromic() {
     }
   }
   return true;
+}
+
+// HOJA 3
+template <class T>
+void vector_t<T>::Reverse() {
+  for (int index = 0; index < get_size(); ++index) {
+    std::cout << at(get_size() - index - 1) << " ";
+  }
+  std::cout << std::endl;
 }
