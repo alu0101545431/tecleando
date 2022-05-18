@@ -94,9 +94,8 @@ bool maze_t::is_ok_(const int i, const int j) const {
   // - fila i y la columna j están dentro de los límites del laberinto,
   // - la celda en (i, j) no puede ser un muro,
   // - la celda (i, j) no puede haber sido visitada antes.
-
-  if ((i < matrix_.get_m()) && (j < matrix_.get_n()) &&
-      (matrix_(i + 1, j + 1) != WALL_ID) && !(visited_(i + 1, j + 1)))
+  if (!(i < 1) && !(j < 1) && (i <= matrix_.get_m()) && (j <= matrix_.get_n()) &&
+      (matrix_(i, j) != WALL_ID) && !(visited_(i, j)))
     return true;
   return false;
 }
@@ -107,7 +106,7 @@ bool maze_t::solve_(const int i, const int j) {
   // CASO BASE:
   // retornar 'true' si 'i' y 'j' han llegado a la salida
 
-  if (i + 1 == i_end_ && j + 1== j_end_) return true;
+  if (i == i_end_ && j == j_end_) return true;
 
   // marcamos la celda como visitada
   visited_(i, j) = true;
@@ -120,12 +119,9 @@ bool maze_t::solve_(const int i, const int j) {
   // propagarla retornando también 'true'
 
   for (int coord = 0; coord < 4; ++coord) {
-    if (is_ok_(i + i_d[coord] + 1, j + j_d[coord] + 1)) {
-      std::cout << "auxilio";
-      if (solve_(i + i_d[coord] + 1, j + j_d[coord] + 1)) {
-        matrix_(i + i_d[coord] + 1, j + j_d[coord] + 1) = PATH_ID;
-        std::cout << "socorro";
-        write();
+    if (is_ok_(i + i_d[coord], j + j_d[coord])) {
+      if (solve_(i + i_d[coord], j + j_d[coord])) {
+        matrix_(i + i_d[coord], j + j_d[coord]) = PATH_ID;
         return true;
       }
     }
