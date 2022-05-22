@@ -99,10 +99,15 @@ int main(int argc, char *argv[]) {
         case 'm':
           G.RecorridoAmplitud();
           break;
-        default:
-          break;
         case 'k':
           G.Kruskal();
+          break;
+        case 'd':
+        cout << "Camino mínimo por Dijkstra";
+          G.Dijkstra();
+          break;
+        default:
+          break;
       }
     } while (opcion != 'q');
   }
