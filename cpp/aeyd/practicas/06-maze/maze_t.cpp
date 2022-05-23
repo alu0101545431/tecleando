@@ -121,7 +121,13 @@ bool maze_t::solve_(const int i, const int j) {
   for (int coord = 0; coord < 4; ++coord) {
     if (is_ok_(i + i_d[coord], j + j_d[coord])) {
       if (solve_(i + i_d[coord], j + j_d[coord])) {
+        sll_node_t<coordinates>* aux_node =  new sll_node_t<coordinates>;
+        coordinates aux_coordinate;
+        aux_coordinate.row = i + i_d[coord];
+        aux_coordinate.column = j + j_d[coord];
         matrix_(i + i_d[coord], j + j_d[coord]) = PATH_ID;
+        aux_node->set_data(aux_coordinate);
+        solution_list_.push_front(aux_node);
         return true;
       }
     }
@@ -133,8 +139,16 @@ bool maze_t::solve_(const int i, const int j) {
   return false;
 }
 
+void maze_t::ShowPath() {
+  solution_list_.write();
+}
+
+// sobrecarga de salida para el struct de pares
+
 // operador de entrada sobrecargado
 istream& operator>>(istream& is, maze_t& M) { return M.read(is); }
 
 // operador de salida sobrecargado
 ostream& operator<<(ostream& os, const maze_t& M) { return M.write(os); }
+
+

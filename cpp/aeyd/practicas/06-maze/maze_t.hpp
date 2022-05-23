@@ -12,6 +12,8 @@
 
 #include <iostream>
 #include "matrix_t.hpp"
+#include "sll_node_t.h"
+#include "sll_t.h"
 
 #define TRACE(x) cout << (#x) << "= " << (x) << endl
 
@@ -36,6 +38,13 @@
 using namespace std;
 using namespace AED;
 
+// FASE III 
+struct coordinates {
+  short row;
+  short column;
+};
+
+
 typedef matrix_t<short> matrix_t_short;
 typedef matrix_t<bool> matrix_t_bool;
 
@@ -57,6 +66,7 @@ private:
   matrix_t_bool visited_;
   // guarda las filas y columnas de entrada (start) y salida (end)
   int i_start_, j_start_, i_end_, j_end_;
+  sll_t<coordinates> solution_list_;
 
 public:
   // constructor y destructor
@@ -68,6 +78,8 @@ public:
 
   istream& read(istream& = cin);
   ostream& write(ostream& = cout) const;
+
+  void ShowPath();
   
 private:
   bool is_ok_(const int, const int) const;

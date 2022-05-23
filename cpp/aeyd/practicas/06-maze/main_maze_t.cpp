@@ -27,6 +27,9 @@ int main()
   { 
     cout << "¡¡ Se ha encontrado una salida al laberinto !!" << endl;
     cout << M << endl;
+
+    cout << "Camino de salida: " << endl;
+    M.ShowPath();
   }
   else
     cout << "No se ha podido encontrar la salida del laberinto..." << endl;
