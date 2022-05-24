@@ -119,7 +119,7 @@ bool maze_t::solve_(const int i, const int j) {
   // propagarla retornando también 'true'
 
   // recorremos los vectores que nos moverán en coordenadas
-  for (direction_t coord = N; coord < W + 1; coord = direction_t(coord + 1)) {
+  for (int coord = N; coord < SE + 1; ++coord) {
     // comprobar si la casilla a la que nos desplazamos está ok
     if (is_ok_(i + i_d[coord], j + j_d[coord])) { 
       // llamadas recursivas a solve hasta que se encuentre la casilla salida
