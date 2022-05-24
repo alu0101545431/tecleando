@@ -118,11 +118,15 @@ bool maze_t::solve_(const int i, const int j) {
   // Si la llamada devuelve 'true', poner en la celda el valor PATH_ID, y
   // propagarla retornando también 'true'
 
+  // recorremos los vectores que nos moverán en coordenadas
   for (int coord = 0; coord < 4; ++coord) {
-    if (is_ok_(i + i_d[coord], j + j_d[coord])) {
+    // comprobar si la casilla a la que nos desplazamos está ok
+    if (is_ok_(i + i_d[coord], j + j_d[coord])) { 
+      // llamadas recursivas a solve hasta que se encuentre la casilla salida
       if (solve_(i + i_d[coord], j + j_d[coord])) {
+        // nodo auxiliar para añadir la casilla solución a la lista que la guarda
         sll_node_t<coordinates>* aux_node =  new sll_node_t<coordinates>;
-        coordinates aux_coordinate;
+        coordinates aux_coordinate; // coordenada auxiliar
         aux_coordinate.row = i + i_d[coord];
         aux_coordinate.column = j + j_d[coord];
         matrix_(i + i_d[coord], j + j_d[coord]) = PATH_ID;
