@@ -119,7 +119,7 @@ bool maze_t::solve_(const int i, const int j) {
   // propagarla retornando también 'true'
 
   // recorremos los vectores que nos moverán en coordenadas
-  for (int coord = 0; coord < 4; ++coord) {
+  for (direction_t coord = N; coord < W + 1; coord = direction_t(coord + 1)) {
     // comprobar si la casilla a la que nos desplazamos está ok
     if (is_ok_(i + i_d[coord], j + j_d[coord])) { 
       // llamadas recursivas a solve hasta que se encuentre la casilla salida
@@ -146,8 +146,6 @@ bool maze_t::solve_(const int i, const int j) {
 void maze_t::ShowPath() {
   solution_list_.write();
 }
-
-// sobrecarga de salida para el struct de pares
 
 // operador de entrada sobrecargado
 istream& operator>>(istream& is, maze_t& M) { return M.read(is); }
