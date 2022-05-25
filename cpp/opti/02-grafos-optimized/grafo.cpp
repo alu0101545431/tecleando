@@ -431,16 +431,17 @@ void GRAFO::Dijkstra() {
     min = maxint;
     for (int nodo = 0; nodo < n; ++nodo) {
       if (!PermanentementeEtiquetado[nodo] && d[nodo] < min) {
-        PermanentementeEtiquetado[nodo] = true;
         min = d[nodo];
         candidato = nodo;
       }
     }
-
-    for (int sucesor = 0; LS[candidato].size(); ++sucesor) {
-      if (d[sucesor] > d[candidato] + LS[candidato][sucesor].c) {
-        d[LS[candidato][sucesor].j] = d[candidato] + LS[candidato][sucesor].c;
-        pred[LS[candidato][sucesor].j] = candidato;
+    if (candidato != UERROR) {
+      PermanentementeEtiquetado[candidato] = true;
+      for (int sucesor = 0; sucesor < LS[candidato].size(); ++sucesor) {
+        if (d[LS[candidato][sucesor].j] > d[candidato] + LS[candidato][sucesor].c) {
+          d[LS[candidato][sucesor].j] = d[candidato] + LS[candidato][sucesor].c;
+          pred[LS[candidato][sucesor].j] = candidato;
+        }
       }
     }
 
@@ -448,5 +449,13 @@ void GRAFO::Dijkstra() {
 
   cout << "Soluciones:" << endl;
   // En esta parte del código, mostramos los caminos mínimos, si los hay
-  MostrarCamino(s, n, pred);
+  for (unsigned nodo = 0; nodo < n; nodo++) {
+        if (pred[nodo] == UERROR) {
+            cout << "No hay camino desde " << s + 1 << " al nodo " << nodo + 1 << endl;
+        } else if (pred[nodo] != UERROR && nodo != s){
+            cout << "El camino desde " << s + 1 << " al nodo " << nodo + 1 << " es : ";
+            MostrarCamino(s, nodo, pred);
+            cout << nodo + 1 << " de longitud " << d[nodo] << endl;
+        }
+    }
 }
