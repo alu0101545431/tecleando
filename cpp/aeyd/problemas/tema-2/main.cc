@@ -1,4 +1,4 @@
-
+// g++ -g rational_t.cpp main.cc -o main.out
 
 #include <iostream>
 #include <cmath>
@@ -41,7 +41,7 @@ int main()
   x.read(), x.write();
   y.read(), y.write();
   
-  cout << "Producto escalar de vector_t<rational_t>: " << scal_prod(x, y) << endl << endl;
+  cout << "Producto escalar de vector_t<rational_t>: " << scal_prod(x, y) << endl;
   
   
   // FASE III
@@ -68,8 +68,18 @@ int main()
 
   // HOJA DE PROBLEMAS
   // invertir elementos de un vector
-  v.write();
-  v.Reverse();
+
+  // v.write();
+  // v.Reverse();
+  int search_value = 2;
+  cout << "[INFO]: Valor a buscar... > " << search_value << " -- POSICIÓN: ";
+  cout << vector_modificacion.Search(search_value) << endl;
+  cout << "[INFO]: Numero de valores mayores o iguales que... > " << search_value << " -- RESPUESTA: ";
+  cout << vector_modificacion.HigherOrEqualThan(search_value) << endl;
+
+  
+  
+
 
   return 0;
 }

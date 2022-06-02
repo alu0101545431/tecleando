@@ -35,6 +35,8 @@ class vector_t {
   // PROBLEMAS TEMA 2
 
   void Reverse();
+  int Search(T&);
+  int HigherOrEqualThan(T&);
 
  private:
   T* v_;
@@ -169,6 +171,7 @@ bool vector_t<T>::IsPalindromic() {
 }
 
 // HOJA 3
+
 template <class T>
 void vector_t<T>::Reverse() {
   for (int index = 0; index < get_size(); ++index) {
@@ -176,3 +179,35 @@ void vector_t<T>::Reverse() {
   }
   std::cout << std::endl;
 }
+
+// Búsqueda de un elemento dentro de un vector y devolución del índice en caso de encontrarlo 
+// (variante de "Búsqueda secuencial de un elemento")
+
+template <class T>
+int vector_t<T>::Search(T& data) {
+  for (int index = 0; index < get_size(); ++index) {
+    if (at(index) == data) {
+      return index;
+    }
+  }
+}
+
+// Contabilización de las ocurrencias de los elemento dentro de un vector que sean mayores o iguales 
+// que otro valor dado (variante de "Contabilización de las ocurrencias de un elemento dentro de un vector")
+
+template <class T>
+int vector_t<T>::HigherOrEqualThan(T& data) {
+  int counter = 0;
+  for (int index = 0; index < get_size(); ++index) {
+    if (at(index) >= data) {
+      counter++;
+    }
+  }
+  return counter;
+}
+
+// Búsqueda del menor/mayor elemento de un vector y la posición donde se encuentra 
+// la última ocurrencia del menor/mayor, inicializando valores al primer elemento del vector 
+// (variante de "Búsqueda del menor/mayor elemento")
+
+// pendiente
