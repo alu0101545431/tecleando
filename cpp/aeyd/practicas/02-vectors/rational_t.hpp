@@ -16,14 +16,12 @@
 #include <cassert>
 #include <cmath>
 
-// pauta de estilo [5]
 # define EPSILON 1e-6
 
 using namespace std;
 
 class rational_t
 {
-  // pautas de estilos [44] y [73]: primero "public" y después "private"
 public:
   rational_t(const int = 0, const int = 1);
   ~rational_t() {}

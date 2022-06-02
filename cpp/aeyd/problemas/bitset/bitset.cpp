@@ -1,3 +1,5 @@
+// EJEMPLOS DE PROBLEMAS DE BITSET. CÓDIGO INCOMPLETO
+
 #include <iostream>
 
 // Cargar en un objeto bitset el conjunto universal (111111...1)

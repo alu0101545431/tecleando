@@ -1,4 +1,5 @@
 #include <iostream>
+#include "vector_t.h"
 
 int NumberOfDigits(unsigned int number) {
   if (number) {
@@ -33,6 +34,21 @@ bool IsPrime(int number, int divisor = 2) {
   return IsPrime(number, divisor + 1);
 }
 
+template <class T>
+vector_t<T> Mergesort (vector_t<T> v) {
+  if v.get_size() == 1 return v;
+  vector_t<T> a, b;
+  a.resize(v.get_size() / 2);
+  for (int i = 0; i < get_size(); ++i) {
+    a.at(i) = v.at(i);
+  }
+  b.resize(v.get_size() - a.get_size());
+  for (int i = 0; i < get_size(); ++i) {
+    b.at(i) = v.at(i);
+  }
+  Mergesort(a, b);
+}
+
 int main() {
   unsigned int number;
   std::cout << "[INPUT]: Introduce un número entero positivo > ";
@@ -47,5 +63,5 @@ int main() {
             << Collatz(number) << std::endl;
   std::cout << "[INFO]: El número es primo: " << (IsPrime(number) ? "SI" : "NO")
             << std::endl;
-  return 0;
+  return 0; 
 }
