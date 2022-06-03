@@ -415,6 +415,7 @@ void GRAFO::Dijkstra() {
   // Solicitamos al usuario nodo origen
   cout << endl;
   cout << "Caminos minimos: Dijkstra" << endl;
+  cout << "AAAAAAAA" << LS[4][1].j;
   cout << "Nodo de partida? [1-" << n << "]: ";
   cin >> (unsigned &)s;
   // La etiqueta distancia del nodo origen es 0, y es su propio pred
@@ -429,16 +430,20 @@ void GRAFO::Dijkstra() {
     // para buscar atajos. Esto lo hacemos mientras haya candidatos
     candidato = UERROR;
     min = maxint;
+    // búsqueda de un nodo no etiquetado que ofrezca una mejora
     for (int nodo = 0; nodo < n; ++nodo) {
       if (!PermanentementeEtiquetado[nodo] && d[nodo] < min) {
         min = d[nodo];
         candidato = nodo;
       }
     }
-    if (candidato != UERROR) {
-      PermanentementeEtiquetado[candidato] = true;
+    if (min < maxint) { // candidato con coste menor a inf
+      PermanentementeEtiquetado[candidato] = true; // etiquetamos el candidato y . . .
+      // recorremos sus sucesores
       for (int sucesor = 0; sucesor < LS[candidato].size(); ++sucesor) {
+        // si el coste del sucesor del candidato mejora el camino hasta el nodo sucesor
         if (d[LS[candidato][sucesor].j] > d[candidato] + LS[candidato][sucesor].c) {
+          // se actualizan los valores
           d[LS[candidato][sucesor].j] = d[candidato] + LS[candidato][sucesor].c;
           pred[LS[candidato][sucesor].j] = candidato;
         }

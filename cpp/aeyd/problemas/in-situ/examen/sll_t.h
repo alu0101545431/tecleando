@@ -1,23 +1,22 @@
-// AUTOR:
-// FECHA:
-// EMAIL:
+// AUTOR: ADRIÁN LIMA GARCÍA
+// FECHA: ADRIÁN LIMA GARCÍA
+// EMAIL: ADRIANLIMAGARCIA00@ULL.EDU.ES
 // VERSION: 3.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 4
 // ESTILO: Google C++ Style Guide
-// COMENTARIOS:
+// COMENTARIOS: 
 
 #ifndef SLLT_H_
 #define SLLT_H_
 
-#include <cassert>
 #include <iostream>
+#include <cassert>
 
 #include "sll_node_t.h"
 
 // Clase para almacenar una lista simplemente enlazada
-template <class T>
-class sll_t {
+template <class T> class sll_t {
  public:
   // constructor
   sll_t(void) : head_(NULL) {}
@@ -27,7 +26,7 @@ class sll_t {
 
   // getters
   sll_node_t<T>* get_head(void) const { return head_; };
-
+  
   bool empty(void) const;
 
   // operaciones
@@ -42,16 +41,13 @@ class sll_t {
   // E/S
   std::ostream& write(std::ostream& = std::cout) const;
 
-  // PROBLEMAS
-  T delete_last();
-
  private:
   sll_node_t<T>* head_;
 };
 
+
 // destructor
-template <class T>
-sll_t<T>::~sll_t(void) {
+template <class T> sll_t<T>::~sll_t(void) {
   while (!empty()) {
     sll_node_t<T>* aux = head_;
     head_ = head_->get_next();
@@ -60,22 +56,19 @@ sll_t<T>::~sll_t(void) {
 }
 
 // Comprobar si lista vacía
-template <class T>
-bool sll_t<T>::empty(void) const {
+template <class T> bool sll_t<T>::empty(void) const {
   return head_ == NULL;
 }
 
 // operaciones
-template <class T>
-void sll_t<T>::push_front(sll_node_t<T>* n) {
+template <class T> void sll_t<T>::push_front(sll_node_t<T>* n) {
   assert(n != NULL);
 
   n->set_next(head_);
   head_ = n;
 }
 
-template <class T>
-sll_node_t<T>* sll_t<T>::pop_front(void) {
+template <class T> sll_node_t<T>* sll_t<T>::pop_front(void) { 
   assert(!empty());
   sll_node_t<T>* aux = head_;
   head_ = head_->get_next();
@@ -84,20 +77,19 @@ sll_node_t<T>* sll_t<T>::pop_front(void) {
   return aux;
 }
 
-template <class T>
-void sll_t<T>::insert_after(sll_node_t<T>* prev, sll_node_t<T>* n) {
+template <class T> void sll_t<T>::insert_after(sll_node_t<T>* prev,
+					       sll_node_t<T>* n) {
   assert(prev != NULL && n != NULL);
 
   n->set_next(prev->get_next());
   prev->set_next(n);
 }
 
-template <class T>
-sll_node_t<T>* sll_t<T>::erase_after(sll_node_t<T>* prev) {
+template <class T> sll_node_t<T>* sll_t<T>::erase_after(sll_node_t<T>* prev) { 
   assert(!empty());
   assert(prev != NULL);
   sll_node_t<T>* aux = prev->get_next();
-
+  
   assert(aux != NULL);
   prev->set_next(aux->get_next());
   aux->set_next(NULL);
@@ -105,17 +97,16 @@ sll_node_t<T>* sll_t<T>::erase_after(sll_node_t<T>* prev) {
   return aux;
 }
 
-template <class T>
-sll_node_t<T>* sll_t<T>::search(const T& d) const {
+template <class T> sll_node_t<T>* sll_t<T>::search(const T& d) const {
   sll_node_t<T>* aux = head_;
-  while ((aux != NULL) && (aux->get_data() != d)) aux = aux->get_next();
-
+  while ((aux != NULL) && (aux->get_data() != d))
+    aux = aux->get_next();
+    
   return aux;
 }
 
 // E/S
-template <class T>
-std::ostream& sll_t<T>::write(std::ostream& os) const {
+template <class T> std::ostream& sll_t<T>::write(std::ostream& os) const {
   sll_node_t<T>* aux = head_;
 
   while (aux != NULL) {
@@ -123,18 +114,6 @@ std::ostream& sll_t<T>::write(std::ostream& os) const {
     aux = aux->get_next();
   }
   return os;
-}
-
-template <class T>
-T sll_t<T>::delete_last() {
-  sll_node_t<T>* aux_node = get_head();
-  assert(!empty());
-  while (aux_node->get_next()->get_next() == NULL) {
-    if (aux_node->get_next()->get_next() == NULL) {
-      erase_after(aux_node->get_next());
-    }
-    aux_node->get_next();
-  }
 }
 
 #endif  // SLLT_H_

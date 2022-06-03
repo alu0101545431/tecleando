@@ -71,5 +71,8 @@ int main(void)
   lista.write(cout);
   cout << endl;	
 
+  cout << "----" << endl;
+  lista.delete_last();
+  lista.write();
   return 0;
 }
