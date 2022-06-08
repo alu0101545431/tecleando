@@ -1,0 +1,2 @@
+- Cómo funciona la devolución por referencia
+- Se permiten las funciones inline en la Google Style Sheet
