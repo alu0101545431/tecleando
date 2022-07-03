@@ -1,16 +1,15 @@
-#include "substring.h""
+#include "find.h"
 
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <assert.h>
 
 const std::string KHelpMessage =
     "Sample text \n Usage: "
     "./program <string>";
 
 void Usage(int argc, const char* argv[]) {
-  if (argc != 4) {
+  if (argc != 3) {
     std::cout << argv[0] << ": miss string like argument" << std::endl
               << "Try '" << argv[0] << " --help' for more information"
               << std::endl;
@@ -26,11 +25,11 @@ void Usage(int argc, const char* argv[]) {
   }
 }
 
-std::string Substring(std::string& original, int start, int end) {
-  assert(start >= 0 && end < original.size());
-  std::string modified = "";
-  for (int index = start; index <= end; ++index) {
-    modified.push_back(original.at(index));
+int Find(std::string& text, char& letter) {
+  int counter  = 0;
+  for (int index = 0; index < text.size(); ++index) {
+    if (text.at(index) == letter) counter++;
   }
-  return modified;
+  if (counter == 0) return -1;
+  return counter;
 }

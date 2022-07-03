@@ -1,16 +1,15 @@
-#include "substring.h""
+#include "encrypt.h"
 
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <assert.h>
 
 const std::string KHelpMessage =
     "Sample text \n Usage: "
     "./program <string>";
 
 void Usage(int argc, const char* argv[]) {
-  if (argc != 4) {
+  if (argc != 2) {
     std::cout << argv[0] << ": miss string like argument" << std::endl
               << "Try '" << argv[0] << " --help' for more information"
               << std::endl;
@@ -26,11 +25,14 @@ void Usage(int argc, const char* argv[]) {
   }
 }
 
-std::string Substring(std::string& original, int start, int end) {
-  assert(start >= 0 && end < original.size());
-  std::string modified = "";
-  for (int index = start; index <= end; ++index) {
-    modified.push_back(original.at(index));
+void SwitchCase(std::string& phrase) {
+  for (int index = 0; index < phrase.size(); ++index) {
+    if (isalpha(phrase.at(index))) {
+      if (islower(phrase.at(index))) {
+        phrase.at(index) = std::toupper(phrase.at(index));
+      } else {
+        phrase.at(index) = std::tolower(phrase.at(index));
+      }
+    }
   }
-  return modified;
 }
